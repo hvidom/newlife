@@ -1,16 +1,10 @@
 {
-  "extends": "astro/tsconfigs/strict",
-  "include": [
-    ".astro/types.d.ts",
-    "**/*",
-    "./worker-configuration.d.ts"
-  ],
-  "exclude": [
-    "dist"
-  ],
-  "compilerOptions": {
-    "jsxImportSource": "react",
-    "lib": ["ESNext", "DOM"],
+	"extends": "astro/tsconfigs/strict",
+	"include": [".astro/types.d.ts", "**/*", "./worker-configuration.d.ts"],
+	"exclude": ["dist"],
+	"compilerOptions": {
+		"jsxImportSource": "react",
+		"lib": ["ESNext", "DOM"],
 		"target": "ESNext",
 		"strictNullChecks": true,
 		"module": "Preserve",
