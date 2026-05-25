@@ -5,7 +5,7 @@ import cloudflare from "@astrojs/cloudflare";
 import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
 import tailwindcss from "@tailwindcss/vite";
-
+import path from "path"
 import { siteConfig } from "./src/config/site";
 
 const SITE = import.meta.env.PROD ? siteConfig.url : "http://localhost:4321";
@@ -26,5 +26,10 @@ export default defineConfig({
 	},
 	vite: {
 		plugins: [tailwindcss()],
+		resolve: {
+			alias: {
+			  "@": path.resolve(__dirname, "./src"),
+			},
+		  },
 	},
 });

@@ -31,7 +31,7 @@
 	},
 	"files": {
 		"ignoreUnknown": true,
-		"includes": ["src/**/*", "*.json", "*.js", "*.mjs"]
+		"includes": ["src/**/*", "*.json", "*.js"]
 	},
 	"formatter": {
 		"enabled": true,
