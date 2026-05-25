@@ -1,0 +1,75 @@
+---
+import { ContactForm } from "@/components/forms/contact-form";
+import Layout from "@/layouts/Layout.astro";
+---
+
+<Layout title="Contact Us" description="Get in touch with New Life Integration & Wellbeing Network CLG. We respond to all inquiries within 2-3 business days.">
+	
+	<!-- Header -->
+	<section class="bg-gradient-to-b from-teal-950/40 via-background to-background pt-20 pb-12 text-center relative border-b border-border/40">
+		<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
+			<span class="text-xs font-extrabold uppercase tracking-widest text-primary font-sans">Get in Touch</span>
+			<h1 class="text-4xl sm:text-5xl font-extrabold tracking-tight text-foreground mt-2 mb-4">Contact Us</h1>
+			<p class="text-muted-foreground text-base max-w-2xl mx-auto leading-relaxed">
+				We are here to answer your questions and support your integration journey in Ireland.
+			</p>
+		</div>
+	</section>
+
+	<!-- Contact Form + Sidebar Grid -->
+	<section class="py-16">
+		<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+			<div class="grid grid-cols-1 lg:grid-cols-3 gap-12 items-start">
+				
+				<!-- Interactive Form Column -->
+				<div class="lg:col-span-2">
+					<ContactForm client:load />
+				</div>
+
+				<!-- Sidebar Info Column -->
+				<div class="space-y-8">
+					<!-- Contact Details Card -->
+					<div class="bg-card p-6 sm:p-8 rounded-3xl border border-border/40 shadow-md">
+						<h3 class="text-sm font-extrabold text-foreground mb-4">Contact Information</h3>
+						<ul class="space-y-5 text-xs text-muted-foreground">
+							<li class="flex items-start gap-3">
+								<span class="text-lg">📧</span>
+								<div>
+									<h4 class="font-bold text-foreground mb-0.5">Email Support</h4>
+									<p><a href="mailto:info@newlifeintegration.ie" class="text-primary hover:underline">info@newlifeintegration.ie</a></p>
+								</div>
+							</li>
+							<li class="flex items-start gap-3">
+								<span class="text-lg">🏢</span>
+								<div>
+									<h4 class="font-bold text-foreground mb-0.5">Headquarters</h4>
+									<p>Currently operating without a permanent office. All branch coordination is managed online and via county-specific meeting halls.</p>
+								</div>
+							</li>
+							<li class="flex items-start gap-3">
+								<span class="text-lg">⏱️</span>
+								<div>
+									<h4 class="font-bold text-foreground mb-0.5">Response Time</h4>
+									<p>We review and respond to all email inboxes and online submission tickets within 2–3 business days.</p>
+								</div>
+							</li>
+						</ul>
+					</div>
+
+					<!-- Quick Programs Links Card -->
+					<div class="bg-card p-6 sm:p-8 rounded-3xl border border-border/40 shadow-md">
+						<h3 class="text-sm font-extrabold text-foreground mb-4">Quick Programs</h3>
+						<ul class="space-y-3 text-xs text-muted-foreground">
+							<li><a href="/open-branch" class="text-muted-foreground hover:text-primary transition-colors flex items-center gap-1.5"><span>📍</span> Open a Branch →</a></li>
+							<li><a href="/events" class="text-muted-foreground hover:text-primary transition-colors flex items-center gap-1.5"><span>📅</span> View Event Calendar →</a></li>
+							<li><a href="/leadership" class="text-muted-foreground hover:text-primary transition-colors flex items-center gap-1.5"><span>🎓</span> Leadership Foundations →</a></li>
+							<li><a href="/grants" class="text-muted-foreground hover:text-primary transition-colors flex items-center gap-1.5"><span>💶</span> Grant Support Guides →</a></li>
+						</ul>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</section>
+
+</Layout>

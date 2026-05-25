@@ -1,7 +1,6 @@
 ---
-
 import { siteConfig } from "@/config/site";
-import "@/styles/globals.css";
+import "@/styles/global.css";
 
 interface Props {
   title: string;
@@ -11,11 +10,7 @@ interface Props {
 
 const canonicalURL = new URL(Astro.url.pathname, siteConfig.url);
 
-const {
-  title,
-  description = siteConfig.description,
-  image = "/fallback.png",
-} = Astro.props;
+const { title, description = siteConfig.description, image = "/fallback.png" } = Astro.props;
 ---
 
 <!-- Global Metadata -->
@@ -48,25 +43,9 @@ const {
 <meta property="twitter:image" content={new URL(image, Astro.url)}>
 
 <script is:inline>
-  const getThemePreference = () => {
-    if (typeof localStorage !== "undefined" && localStorage.getItem("theme")) {
-      return localStorage.getItem("theme");
-    }
-    return window.matchMedia("(prefers-color-scheme: dark)").matches
-      ? "dark"
-      : "light";
-  };
-  const isDark = getThemePreference() === "dark";
-  document.documentElement.classList[isDark ? "add" : "remove"]("dark");
-
-  if (typeof localStorage !== "undefined") {
-    const observer = new MutationObserver(() => {
-      const isDark = document.documentElement.classList.contains("dark");
-      localStorage.setItem("theme", isDark ? "dark" : "light");
-    });
-    observer.observe(document.documentElement, {
-      attributes: true,
-      attributeFilter: ["class"],
-    });
-  }
+	// Enforce light theme only
+	document.documentElement.classList.remove("dark");
+	if (typeof localStorage !== "undefined") {
+		localStorage.setItem("theme", "light");
+	}
 </script>

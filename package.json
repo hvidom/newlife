@@ -25,7 +25,10 @@
     "sync": "astro sync",
     "build:tailwind": "bun x @tailwindcss/cli -i src/styles/global.css -o dist/global.css --minify",
     "build:postcss": "postcss dist/global.css -o dist/global.css",
-    "generate-types": "wrangler types"
+    "generate-types": "wrangler types",
+    "format": "bunx --bun @biomejs/biome format --write",
+		"lint": "bunx --bun @biomejs/biome lint --write",
+    "check": "bunx --bun @biomejs/biome check src --write"
   },
   "dependencies": {
     "@astrojs/cloudflare": "^13.5.4",
@@ -56,6 +59,7 @@
   },
   "private": true,
   "devDependencies": {
+    "@biomejs/biome": "2.4.15",
     "@types/bun": "latest",
     "postcss": "^8.5.15",
     "postcss-cli": "^11.0.1"

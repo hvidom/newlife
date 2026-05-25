@@ -1,0 +1,87 @@
+---
+import Layout from "@/layouts/Layout.astro";
+
+const values = [
+  {
+    title: "Inclusivity",
+    desc: "Welcoming all individuals and families regardless of their background, culture, or beliefs.",
+    emoji: "🤝",
+  },
+  {
+    title: "Empowerment",
+    desc: "Providing training, skills, and spaces for personal growth and community leadership.",
+    emoji: "🌱",
+  },
+  {
+    title: "Collaboration",
+    desc: "Working closely with local agencies, branches, and community groups across Ireland.",
+    emoji: "🏢",
+  },
+  {
+    title: "Wellbeing",
+    desc: "Prioritizing physical, mental, and social health as crucial cornerstones of successful integration.",
+    emoji: "💚",
+  },
+];
+---
+
+<Layout title="About Us" description="Learn about New Life Integration & Wellbeing Network CLG, our mission, vision, and how we support integration in Ireland.">
+	
+	<!-- Hero Header -->
+	<section class="bg-gradient-to-b from-teal-950/40 via-background to-background pt-20 pb-12 text-center relative border-b border-border/40">
+		<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
+			<span class="text-xs font-extrabold uppercase tracking-widest text-primary">Who We Are</span>
+			<h1 class="text-4xl sm:text-5xl font-extrabold tracking-tight text-foreground mt-2 mb-4">About Us</h1>
+			<p class="text-muted-foreground text-base max-w-2xl mx-auto leading-relaxed">
+				Building communities and transforming lives through collaborative, non-profit volunteer efforts across the island of Ireland.
+			</p>
+		</div>
+	</section>
+
+	<!-- Story Section -->
+	<section class="py-16">
+		<div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+			<div class="space-y-8 text-sm sm:text-base leading-relaxed text-muted-foreground">
+				<p>
+					<strong>New Life Integration & Wellbeing Network CLG</strong> is a Company Limited by Guarantee (CLG) dedicated to supporting individuals, newcomers, and families in their integration journey in Ireland.
+				</p>
+				<p>
+					Integration is not just about finding housing or getting a job; it is about building deep, lasting connections, feeling a sense of belonging, and taking care of one's personal development and mental wellbeing.
+				</p>
+				
+				<div class="my-10 bg-muted/30 border border-border/40 p-6 rounded-3xl relative overflow-hidden">
+					<div class="absolute top-4 right-4 text-4xl opacity-10">❝</div>
+					<h3 class="text-base font-bold text-foreground mb-2">Our Core Mission</h3>
+					<p class="text-xs italic leading-relaxed text-foreground/80">
+						"To establish local, volunteer-led branches that build cultural bridges, deliver practical wellbeing workshops, and offer support structures, helping everyone thrive in their local communities."
+					</p>
+				</div>
+
+				<p>
+					We support local coordinators by offering comprehensive branch guides, brand assets, event calendars, and professional grant writing aid. We operate as a transparent community network with <strong>no commercial interests, franchise fees, or revenue extractions</strong>.
+				</p>
+			</div>
+		</div>
+	</section>
+
+	<!-- Values Section -->
+	<section class="py-16 bg-muted/20 border-t border-b border-border/40">
+		<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+			<div class="text-center mb-12">
+				<span class="text-xs font-extrabold uppercase tracking-widest text-primary font-sans">Our Pillars</span>
+				<h2 class="text-3xl font-extrabold tracking-tight mt-2 text-foreground">Core Values</h2>
+			</div>
+
+			<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+				{values.map(val => (
+					<div class="bg-card p-6 rounded-3xl border border-border/40 hover:border-primary/40 shadow-sm hover:shadow-md transition-all text-center">
+						<span class="text-3xl mb-3 block">{val.emoji}</span>
+						<h3 class="font-extrabold text-sm text-foreground mb-2">{val.title}</h3>
+						<p class="text-muted-foreground text-xs leading-relaxed">{val.desc}</p>
+					</div>
+				))}
+			</div>
+		</div>
+	</section>
+
+</Layout>

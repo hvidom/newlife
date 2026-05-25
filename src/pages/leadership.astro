@@ -1,0 +1,110 @@
+---
+import { Button } from "@/components/ui/button";
+import Layout from "@/layouts/Layout.astro";
+
+const modules = [
+  {
+    number: "01",
+    title: "Personal Integration & Resilience",
+    focus:
+      "Understanding the psychological phases of migration, managing change, building personal resilience, and fostering cross-cultural adaptability.",
+  },
+  {
+    number: "02",
+    title: "Community Event Management",
+    focus:
+      "How to plan, coordinate, and host local integration workshops, wellbeing circles, and professional networking meetups.",
+  },
+  {
+    number: "03",
+    title: "Effective Intercultural Communication",
+    focus:
+      "Building bridges between communities, active listening techniques, public speaking, and leading cross-cultural dialogues.",
+  },
+  {
+    number: "04",
+    title: "Fundraising & Community Grants",
+    focus:
+      "Mastering grant writing basics, researching local/national funds, budget planning, and maintaining non-profit transparency.",
+  },
+];
+---
+
+<Layout title="Leadership Program" description="Join the New Life Integration Leadership Foundations program. Grow your personal development, event coordination, and grant writing skills.">
+	
+	<!-- Header -->
+	<section class="bg-gradient-to-b from-teal-950/40 via-background to-background pt-20 pb-12 text-center relative border-b border-border/40">
+		<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
+			<span class="text-xs font-extrabold uppercase tracking-widest text-primary">Skill Development</span>
+			<h1 class="text-4xl sm:text-5xl font-extrabold tracking-tight text-foreground mt-2 mb-4">Leadership Program</h1>
+			<p class="text-muted-foreground text-base max-w-2xl mx-auto leading-relaxed">
+				Empowering volunteers and community leaders with the knowledge and tools to establish successful integration support systems in Ireland.
+			</p>
+		</div>
+	</section>
+
+	<!-- Program Pitch -->
+	<section class="py-16">
+		<div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+			<div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+				<div class="space-y-4">
+					<h2 class="text-2xl font-extrabold text-foreground">Why Leadership Foundations?</h2>
+					<p class="text-muted-foreground text-sm leading-relaxed">
+						To open a branch or run community integration programs effectively, leaders need unique skills. Our free Leadership Foundations training program is designed to equip you with exactly what you need to create immediate local impact.
+					</p>
+					<p class="text-muted-foreground text-sm leading-relaxed">
+						Whether you're an experienced social worker or a passionate newcomer looking to give back, this program will accelerate your personal and professional growth.
+					</p>
+				</div>
+				<div class="bg-muted/30 border border-border/40 p-6 rounded-3xl space-y-4">
+					<div class="text-xs font-bold text-primary uppercase tracking-widest">Program Details</div>
+					<ul class="space-y-3 text-xs text-muted-foreground">
+						<li class="flex items-center gap-2"><span>⏱️</span> <strong>Duration:</strong> 4 Sessions (Hybrid / Online)</li>
+						<li class="flex items-center gap-2"><span>💶</span> <strong>Cost:</strong> 100% Free for Branch Volunteers</li>
+						<li class="flex items-center gap-2"><span>🎓</span> <strong>Certification:</strong> NLI Community Leader Certificate</li>
+						<li class="flex items-center gap-2"><span>👥</span> <strong>Eligibility:</strong> Open to all volunteers in Ireland</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Curriculum -->
+	<section class="py-16 bg-muted/20 border-t border-b border-border/40">
+		<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+			<div class="text-center mb-12">
+				<span class="text-xs font-extrabold uppercase tracking-widest text-primary">Curriculum</span>
+				<h2 class="text-3xl font-extrabold tracking-tight mt-2 text-foreground">Training Modules</h2>
+				<p class="text-muted-foreground text-xs sm:text-sm mt-2">A complete four-part course on starting and sustaining local integration networks.</p>
+			</div>
+
+			<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+				{modules.map(mod => (
+					<div class="bg-card p-8 rounded-3xl border border-border/40 shadow-sm flex gap-6 hover:shadow-md transition-all">
+						<span class="text-3xl font-black text-primary/30 leading-none">{mod.number}</span>
+						<div>
+							<h3 class="font-extrabold text-sm text-foreground mb-2">{mod.title}</h3>
+							<p class="text-muted-foreground text-xs leading-relaxed">{mod.focus}</p>
+						</div>
+					</div>
+				))}
+			</div>
+		</div>
+	</section>
+
+	<!-- Application CTA -->
+	<section class="py-16 text-center">
+		<div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+			<h2 class="text-2xl sm:text-3xl font-extrabold text-foreground">Start Your Leadership Journey</h2>
+			<p class="text-muted-foreground text-xs sm:text-sm mt-3 mb-8 leading-relaxed max-w-xl mx-auto">
+				Ready to take the next step? Get in touch with us today to find out when the next cohort begins.
+			</p>
+			<a href="/contact">
+				<Button size="lg" className="rounded-full font-bold px-8">
+					Apply for the Program
+				</Button>
+			</a>
+		</div>
+	</section>
+
+</Layout>

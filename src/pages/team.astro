@@ -1,0 +1,74 @@
+---
+import Layout from "@/layouts/Layout.astro";
+
+const members = [
+  {
+    name: "National Coordinator Team",
+    role: "Overall Strategy & Support Services",
+    bio: "Our national team focuses on assisting local branch leaders, managing partnerships with Irish grant systems, and establishing structural templates for community events.",
+    emoji: "🕊️",
+  },
+  {
+    name: "Branch Directors & Leads",
+    role: "Local Event Delivery & Community Engagement",
+    bio: "Passionate community leaders in Drogheda, Dundalk, Dublin, Cork, Galway, and Limerick who coordinate weekly integration circles and local family support networks.",
+    emoji: "⚓",
+  },
+  {
+    name: "Mental Wellbeing Mentors",
+    role: "Circle Facilitators & Coaches",
+    bio: "Experienced integration educators and psychologists who facilitate our wellbeing support groups and motivate community circles.",
+    emoji: "💚",
+  },
+];
+---
+
+<Layout title="Our Team" description="Meet the national coordinators, branch leads, and mental wellbeing facilitators at New Life Integration & Wellbeing Network CLG.">
+	
+	<!-- Header -->
+	<section class="bg-gradient-to-b from-teal-950/40 via-background to-background pt-20 pb-12 text-center relative border-b border-border/40">
+		<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
+			<span class="text-xs font-extrabold uppercase tracking-widest text-primary font-sans">Volunteers</span>
+			<h1 class="text-4xl sm:text-5xl font-extrabold tracking-tight text-foreground mt-2 mb-4">Our Team</h1>
+			<p class="text-muted-foreground text-base max-w-2xl mx-auto leading-relaxed">
+				Meet the dedicated coordinators and directors who work tirelessly to build supportive communities across Ireland.
+			</p>
+		</div>
+	</section>
+
+	<!-- Team Cards -->
+	<section class="py-16">
+		<div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+			<div class="space-y-6">
+				{members.map(member => (
+					<div class="bg-card p-6 sm:p-8 rounded-3xl border border-border/40 shadow-md flex flex-col sm:flex-row gap-6 items-start hover:border-primary/40 transition-all">
+						<div class="h-16 w-16 rounded-2xl bg-primary/10 flex items-center justify-center text-3xl shrink-0">
+							{member.emoji}
+						</div>
+						<div>
+							<h3 class="text-lg font-extrabold text-foreground">{member.name}</h3>
+							<p class="text-xs font-bold text-primary mt-1 mb-3">{member.role}</p>
+							<p class="text-muted-foreground text-xs leading-relaxed">{member.bio}</p>
+						</div>
+					</div>
+				))}
+			</div>
+		</div>
+	</section>
+
+	<!-- Volunteer Pitch -->
+	<section class="py-16 bg-muted/20 border-t border-border/40 text-center">
+		<div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+			<h2 class="text-2xl sm:text-3xl font-extrabold text-foreground">Want to Join Us?</h2>
+			<p class="text-muted-foreground text-xs sm:text-sm mt-3 mb-8 leading-relaxed max-w-xl mx-auto">
+				We are always looking for enthusiastic volunteers, workshop facilitators, and regional coordinators to expand our support network. Get in touch with us today!
+			</p>
+			<a href="/contact">
+				<Button size="lg" className="rounded-full font-bold px-8">
+					Become a Volunteer
+				</Button>
+			</a>
+		</div>
+	</section>
+
+</Layout>

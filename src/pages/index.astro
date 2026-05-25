@@ -1,9 +1,299 @@
 ---
+import { Button } from "@/components/ui/button";
 import Layout from "@/layouts/Layout.astro";
 
+const pillars = [
+  {
+    title: "Community Integration",
+    description:
+      "Building bridges between cultures through local community networks and shared experiences.",
+    icon: "users",
+    color: "from-blue-500/10 to-teal-500/10",
+    textColor: "text-blue-600",
+    borderColor: "hover:border-blue-500/40",
+  },
+  {
+    title: "Wellbeing Support",
+    description:
+      "Mental health and personal wellbeing programs designed for successful integration.",
+    icon: "heart",
+    color: "from-emerald-500/10 to-teal-500/10",
+    textColor: "text-emerald-600",
+    borderColor: "hover:border-emerald-500/40",
+  },
+  {
+    title: "Personal Development",
+    description:
+      "Leadership training and skills development to help individuals thrive in their new environment.",
+    icon: "trending-up",
+    color: "from-purple-500/10 to-pink-500/10",
+    textColor: "text-purple-600",
+    borderColor: "hover:border-purple-500/40",
+  },
+  {
+    title: "Professional Growth",
+    description:
+      "Career support, business development, and employment opportunities for integrated success.",
+    icon: "briefcase",
+    color: "from-amber-500/10 to-orange-500/10",
+    textColor: "text-amber-600",
+    borderColor: "hover:border-amber-500/40",
+  },
+  {
+    title: "Events & Programs",
+    description: "Regular workshops, networking events, and educational programs across Ireland.",
+    icon: "calendar",
+    color: "from-rose-500/10 to-red-500/10",
+    textColor: "text-rose-600",
+    borderColor: "hover:border-rose-500/40",
+  },
+];
 
+const events = [
+  {
+    title: "Integration Success Workshop: Building Your Future in Ireland",
+    date: "Sun 15 Feb 2026",
+    location: "Dublin",
+    organizer: "New Life Integration",
+    price: "Free",
+    isFree: true,
+    type: "In-Person",
+    icon: "globe",
+  },
+  {
+    title: "Leadership Foundations: Personal Growth Session",
+    date: "Fri 20 Feb 2026",
+    location: "Drogheda",
+    organizer: "Branch Coordination",
+    price: "€25",
+    isFree: false,
+    type: "In-Person",
+    icon: "award",
+  },
+  {
+    title: "Online Networking: Connect with Your Community",
+    date: "Sun 22 Feb 2026",
+    location: "Online",
+    organizer: "New Life Integration",
+    price: "Free",
+    isFree: true,
+    type: "Online",
+    icon: "monitor",
+  },
+];
+
+const activeBranches = ["Drogheda", "Dundalk", "Dublin", "Cork", "Galway", "Limerick"];
+
+const comingSoonBranches = ["Waterford", "Wexford", "Sligo", "Kilkenny", "Athlone", "Letterkenny"];
 ---
 
-<Layout title="Homepage" description="My homepage">
+<Layout title="Homepage" description="Building Communities, Transforming Lives. Supporting individuals and families in their integration journey across Ireland.">
 	
+	<!-- ===== HERO SECTION ===== -->
+	<section class="relative overflow-hidden bg-gradient-to-b from-teal-950 via-teal-900 to-background text-white pt-24 pb-20 lg:pt-36 lg:pb-32">
+		<!-- Decorative Background Grid & Blur -->
+		<div class="absolute inset-0 z-0 bg-[linear-gradient(to_right,#ffffff03_1px,transparent_1px),linear-gradient(to_bottom,#ffffff03_1px,transparent_1px)] bg-[size:4rem_4rem]"></div>
+		<div class="absolute top-1/4 left-1/2 -translate-x-1/2 h-[35rem] w-[35rem] rounded-full bg-teal-300/10 blur-[120px] z-0"></div>
+
+		<div class="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
+			<div class="inline-flex items-center gap-2 px-4 py-1.5 bg-white/10 border border-white/20 rounded-full text-xs font-semibold tracking-wide text-white mb-6 backdrop-blur-md shadow-inner">
+				<span class="flex h-2 w-2 rounded-full bg-teal-300 animate-pulse"></span>
+				Supporting Integration Across Ireland
+			</div>
+			
+			<h1 class="scroll-m-20 text-center text-4xl font-extrabold tracking-tight text-balance sm:text-5xl lg:text-6xl xl:text-7xl text-white mb-6 animate-fade-in leading-tight">
+				Building Communities,<br>
+				<span class="text-transparent bg-clip-text bg-gradient-to-r from-teal-300 via-emerald-200 to-teal-400">Transforming Lives</span>
+			</h1>
+			
+			<p class="text-xl text-teal-100/80 max-w-2xl mx-auto mb-10 leading-relaxed">
+				Community-driven programs, personal development, and wellbeing support for individuals and families on their integration journey.
+			</p>
+			
+			<div class="flex flex-col sm:flex-row justify-center items-center gap-4">
+				<a href="/events">
+					<Button size="lg" variant={"default"} className="rounded-full px-8 py-6 font-bold shadow-lg shadow-teal-950/30 transition-all hover:scale-[1.02]">
+						Explore Events
+					</Button>
+				</a>
+				<a href="/branches">
+					<Button size="lg" variant={"secondary"} className="rounded-full px-8 py-6 font-bold border-teal-300/30  backdrop-blur-sm transition-all hover:scale-[1.02]">
+						Join a Branch
+					</Button>
+				</a>
+			</div>
+
+			<!-- Trust Badges -->
+			<div class="grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-3xl mx-auto mt-16 pt-8 border-t border-white/10 text-foreground text-xs font-bold uppercase tracking-widest">
+				<div class="flex items-center justify-center gap-2 py-2">
+					<span>🛡️</span> Registered CLG
+				</div>
+				<div class="flex items-center justify-center gap-2 py-2">
+					<span>📍</span> 6 Active Branches
+				</div>
+				<div class="flex items-center justify-center gap-2 py-2">
+					<span>💚</span> Community-Driven
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- ===== WHAT WE DO ===== -->
+	<section class="py-16 lg:py-24 bg-muted/20 relative">
+		<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+			<div class="text-center mb-16">
+				<span class="text-xs font-extrabold uppercase tracking-widest text-primary">Our Approach</span>
+				<h2 class="scroll-m-20 border-b pb-4 text-3xl font-semibold tracking-tight first:mt-0 text-foreground mt-2">What We Do</h2>
+				<p class="text-muted-foreground max-w-2xl mx-auto mt-4 text-sm sm:text-base leading-relaxed">
+					We combine personal growth with real-world support to help newcomers build a life in Ireland.
+				</p>
+			</div>
+
+			<div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+				{pillars.slice(0, 3).map(pillar => (
+					<div class={`bg-card rounded-3xl p-8 border border-border/40 shadow-md hover:shadow-xl transition-all duration-300 flex flex-col group ${pillar.borderColor}`}>
+						<div class={`h-12 w-12 rounded-2xl bg-gradient-to-br ${pillar.color} flex items-center justify-center mb-6 shrink-0`}>
+							<span class={`text-xl ${pillar.textColor}`}>✦</span>
+						</div>
+						<h3 class="scroll-m-20 text-2xl font-semibold tracking-tight text-foreground mb-3">{pillar.title}</h3>
+						<p class="leading-7 [&:not(:first-child)]:mt-4 text-muted-foreground text-xs leading-relaxed">{pillar.description}</p>
+					</div>
+				))}
+			</div>
+
+			<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+				{pillars.slice(3).map(pillar => (
+					<div class={`bg-card rounded-3xl p-8 border border-border/40 shadow-md hover:shadow-xl transition-all duration-300 flex flex-col group ${pillar.borderColor}`}>
+						<div class={`h-12 w-12 rounded-2xl bg-gradient-to-br ${pillar.color} flex items-center justify-center mb-6 shrink-0`}>
+							<span class={`text-xl ${pillar.textColor}`}>✦</span>
+						</div>
+						<h3 class="scroll-m-20 text-2xl font-semibold tracking-tight text-foreground mb-3">{pillar.title}</h3>
+						<p class="leading-7 [&:not(:first-child)]:mt-4 text-muted-foreground text-xs leading-relaxed">{pillar.description}</p>
+					</div>
+				))}
+			</div>
+		</div>
+	</section>
+
+	<!-- ===== UPCOMING EVENTS ===== -->
+	<section class="py-16 lg:py-24 relative overflow-hidden">
+		<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+			<div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+				<div>
+					<span class="text-xs font-extrabold uppercase tracking-widest text-primary">Don't Miss Out</span>
+					<h2 class="scroll-m-20 border-b pb-4 text-3xl font-semibold tracking-tight first:mt-0 text-foreground mt-2">Upcoming Events</h2>
+					<p class="text-muted-foreground mt-2 text-xs sm:text-sm">Join us for active workshops, networking, and community integration circles.</p>
+				</div>
+				<a href="/events" class="mt-4 md:mt-0">
+					<Button variant="default" className="rounded-full font-bold group">
+						View All Events <span class="ml-1.5 transition-transform group-hover:translate-x-1">→</span>
+					</Button>
+				</a>
+			</div>
+
+			<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+				{events.map(event => (
+					<div class="bg-card rounded-3xl border border-border/40 p-6 flex flex-col hover:border-primary/40 shadow-md transition-all">
+						<div class="flex items-center gap-2 mb-4">
+							<span class={`px-2.5 py-0.5 rounded-full text-[10px] font-bold ${event.isFree ? 'bg-green-500/10 text-green-600' : 'bg-amber-500/10 text-amber-600'}`}>
+								{event.price}
+							</span>
+							<span class="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-primary/10 text-primary">
+								{event.type}
+							</span>
+						</div>
+						
+						<h3 class="scroll-m-20 text-xl font-semibold tracking-tight text-foreground mb-4 line-clamp-2 hover:text-primary transition-colors flex-1">
+							{event.title}
+						</h3>
+
+						<div class="space-y-2 text-xs text-muted-foreground border-t border-border/40 pt-4">
+							<div class="flex items-center gap-2">
+								<span>📅</span> {event.date}
+							</div>
+							<div class="flex items-center gap-2">
+								<span>📍</span> {event.location}
+							</div>
+							<div class="flex items-center gap-2">
+								<span>👤</span> {event.organizer}
+							</div>
+						</div>
+					</div>
+				))}
+			</div>
+		</div>
+	</section>
+
+	<!-- ===== OUR NETWORK BY CITY ===== -->
+	<section class="py-16 lg:py-24 bg-muted/20 relative">
+		<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+			<div class="text-center mb-16">
+				<span class="text-xs font-extrabold uppercase tracking-widest text-primary">Growing Across Ireland</span>
+				<h2 class="scroll-m-20 border-b pb-4 text-3xl font-semibold tracking-tight first:mt-0 text-foreground mt-2">Our Network by City</h2>
+				<p class="text-muted-foreground max-w-2xl mx-auto mt-4 text-sm sm:text-base leading-relaxed">
+					We're establishing community branch systems to support volunteers and families across the island.
+				</p>
+				<div class="flex items-center justify-center gap-4 mt-6 text-xs font-bold uppercase tracking-wider text-muted-foreground">
+					<span class="flex items-center gap-1.5"><span class="h-2 w-2 rounded-full bg-teal-500"></span> Active Branch</span>
+					<span class="flex items-center gap-1.5"><span class="h-2 w-2 rounded-full bg-border"></span> Coming Soon</span>
+				</div>
+			</div>
+
+			<!-- Active Branches -->
+			<div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 mb-8">
+				{activeBranches.map(city => (
+					<a href="/branches" class="bg-card rounded-3xl p-5 border-2 border-primary/20 hover:border-primary shadow-sm hover:shadow-lg transition-all text-center flex flex-col items-center justify-center bg-gradient-to-br from-card via-card to-primary/5 group">
+						<span class="text-2xl mb-2 group-hover:scale-110 transition-transform">📍</span>
+						<span class="text-sm font-extrabold text-foreground">{city}</span>
+						<span class="text-[9px] font-bold text-primary tracking-widest uppercase mt-1">Active</span>
+					</a>
+				))}
+			</div>
+
+			<!-- Coming Soon Branches -->
+			<div class="grid grid-cols-2 md:grid-cols-6 gap-4">
+				{comingSoonBranches.map(city => (
+					<div class="bg-card/50 rounded-2xl p-4 border border-border/40 text-center flex flex-col items-center justify-center opacity-70">
+						<span class="text-base mb-1.5 grayscale opacity-60">📍</span>
+						<span class="text-xs font-bold text-muted-foreground">{city}</span>
+						<span class="text-[8px] font-medium tracking-wide text-muted-foreground mt-0.5">Coming Soon</span>
+					</div>
+				))}
+			</div>
+
+			<div class="text-center mt-12">
+				<a href="/branches">
+					<Button className="rounded-full font-bold px-6">
+						Explore All Branches
+					</Button>
+				</a>
+			</div>
+		</div>
+	</section>
+
+	<!-- ===== CTA BANNER ===== -->
+	<section class="py-16 lg:py-24 bg-gradient-to-r from-teal-900 to-teal-950 border-t border-teal-800 text-white relative overflow-hidden text-center">
+		<div class="absolute inset-0 z-0 bg-[radial-gradient(ellipse_at_center,#0d948810_0%,transparent_70%)]"></div>
+		
+		<div class="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+			<h2 class="scroll-m-20 text-3xl font-semibold tracking-tight text-white mb-4">Ready to Make a Difference?</h2>
+			<p class="text-teal-100/80 max-w-xl mx-auto mb-8 text-sm sm:text-base leading-relaxed">
+				Join an existing branch or launch a branch in your town. We provide full branding guides, templates, and grant writing aids to support you.
+			</p>
+			
+			<div class="flex flex-col sm:flex-row justify-center items-center gap-4">
+				<a href="/open-branch">
+					<Button size="lg" className="rounded-full px-8 py-6 font-bold shadow-lg shadow-teal-950/20 text-teal-950 bg-teal-300 hover:bg-teal-200 transition-all hover:scale-[1.02]">
+						Open a Branch
+					</Button>
+				</a>
+				<a href="/contact">
+					<Button size="lg" variant="outline" className="rounded-full px-8 py-6 font-bold border-teal-300/30 text-white hover:bg-white/10 transition-all hover:scale-[1.02]">
+						Get in Touch
+					</Button>
+				</a>
+			</div>
+		</div>
+	</section>
+
 </Layout>

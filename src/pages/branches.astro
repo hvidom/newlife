@@ -1,0 +1,148 @@
+---
+import { Button } from "@/components/ui/button";
+import Layout from "@/layouts/Layout.astro";
+
+const activeBranches = [
+  {
+    name: "Dublin",
+    status: "Active",
+    coordinator: "Dublin Coordination Unit",
+    email: "dublin@newlifeintegration.ie",
+    focus: "Multicultural Integration & Large-scale Networking",
+    emoji: "☘️",
+  },
+  {
+    name: "Drogheda",
+    status: "Active",
+    coordinator: "Louth Regional Coordinator",
+    email: "drogheda@newlifeintegration.ie",
+    focus: "Community Circles & Family Integration Programs",
+    emoji: "🐚",
+  },
+  {
+    name: "Dundalk",
+    status: "Active",
+    coordinator: "Dundalk Branch Lead",
+    email: "dundalk@newlifeintegration.ie",
+    focus: "Wellbeing Support & Local Integration Circles",
+    emoji: "🛡️",
+  },
+  {
+    name: "Cork",
+    status: "Active",
+    coordinator: "Munster Regional Office",
+    email: "cork@newlifeintegration.ie",
+    focus: "Leadership Training & Motivation Workshops",
+    emoji: "⛵",
+  },
+  {
+    name: "Galway",
+    status: "Active",
+    coordinator: "Galway Branch Lead",
+    email: "galway@newlifeintegration.ie",
+    focus: "Creative Workshops & Professional Networking",
+    emoji: "🎨",
+  },
+  {
+    name: "Limerick",
+    status: "Active",
+    coordinator: "Limerick Coordination Unit",
+    email: "limerick@newlifeintegration.ie",
+    focus: "Social Circles & Career Skill Seminars",
+    emoji: "🏰",
+  },
+];
+
+const comingSoon = ["Waterford", "Wexford", "Sligo", "Kilkenny", "Athlone", "Letterkenny"];
+---
+
+<Layout title="Our Branches" description="Explore active community branches of New Life Integration across Ireland, find local coordinators, or apply to launch a branch.">
+	
+	<!-- Header -->
+	<section class="bg-gradient-to-b from-teal-950/40 via-background to-background pt-20 pb-12 text-center relative border-b border-border/40">
+		<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
+			<span class="text-xs font-extrabold uppercase tracking-widest text-primary">Local Support</span>
+			<h1 class="text-4xl sm:text-5xl font-extrabold tracking-tight text-foreground mt-2 mb-4">Our Branches</h1>
+			<p class="text-muted-foreground text-base max-w-2xl mx-auto leading-relaxed">
+				Connecting newcomers with volunteers and integration structures in their local communities across Ireland.
+			</p>
+		</div>
+	</section>
+
+	<!-- Active Branches -->
+	<section class="py-16">
+		<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+			<div class="text-center mb-12">
+				<h2 class="text-2xl sm:text-3xl font-extrabold text-foreground">Active Branches</h2>
+				<p class="text-muted-foreground text-xs sm:text-sm mt-2">Get in touch with branch leads or participate in local programs.</p>
+			</div>
+
+			<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+				{activeBranches.map(branch => (
+					<div class="bg-card rounded-3xl p-6 border-2 border-primary/20 shadow-md hover:shadow-xl hover:border-primary/50 transition-all flex flex-col justify-between group">
+						<div>
+							<div class="flex items-center justify-between gap-4 mb-4">
+								<span class="text-2xl group-hover:scale-110 transition-transform">{branch.emoji}</span>
+								<span class="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-primary/10 text-primary uppercase tracking-wider">
+									Active
+								</span>
+							</div>
+							
+							<h3 class="text-lg font-extrabold text-foreground mb-1">{branch.name}</h3>
+							<p class="text-xs text-muted-foreground mb-4 font-medium">Coordinator: {branch.coordinator}</p>
+							
+							<div class="space-y-2 text-xs text-muted-foreground border-t border-border/40 pt-4 mb-6">
+								<div class="flex items-start gap-1.5">
+									<span>🎯</span> 
+									<span><strong>Focus:</strong> {branch.focus}</span>
+								</div>
+							</div>
+						</div>
+
+						<a href={`mailto:${branch.email}`} class="w-full">
+							<Button variant="outline" className="w-full rounded-full text-xs font-bold border-primary/20 hover:border-primary">
+								Contact Branch
+							</Button>
+						</a>
+					</div>
+				))}
+			</div>
+		</div>
+	</section>
+
+	<!-- Coming Soon -->
+	<section class="py-16 bg-muted/20 border-t border-b border-border/40">
+		<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+			<div class="text-center mb-12">
+				<h2 class="text-2xl font-extrabold text-foreground">Expanding Soon</h2>
+				<p class="text-muted-foreground text-xs mt-2">We are currently looking for volunteer launching coordinators in these areas.</p>
+			</div>
+
+			<div class="grid grid-cols-2 md:grid-cols-6 gap-4">
+				{comingSoon.map(city => (
+					<div class="bg-card/60 p-5 rounded-2xl border border-border/40 text-center opacity-70">
+						<span class="text-xl mb-1.5 block opacity-50">📍</span>
+						<h3 class="font-bold text-xs text-muted-foreground">{city}</h3>
+						<span class="text-[9px] text-muted-foreground mt-0.5 block font-medium">Coming Soon</span>
+					</div>
+				))}
+			</div>
+		</div>
+	</section>
+
+	<!-- Branch Pitch CTA -->
+	<section class="py-16 text-center">
+		<div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+			<h2 class="text-2xl sm:text-3xl font-extrabold text-foreground">Don't See Your City?</h2>
+			<p class="text-muted-foreground text-xs sm:text-sm mt-3 mb-8 leading-relaxed max-w-xl mx-auto">
+				You can start a branch in your town with absolutely zero franchise fees or obligations. We support you with event guides, marketing kits, and free grant writing templates!
+			</p>
+			<a href="/open-branch">
+				<Button size="lg" className="rounded-full font-bold px-8">
+					Apply to Start a Branch
+				</Button>
+			</a>
+		</div>
+	</section>
+
+</Layout>

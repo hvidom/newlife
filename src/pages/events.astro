@@ -1,0 +1,144 @@
+---
+import { Button } from "@/components/ui/button";
+import Layout from "@/layouts/Layout.astro";
+
+const allEvents = [
+  {
+    title: "Integration Success Workshop: Building Your Future in Ireland",
+    date: "Sun 15 Feb 2026",
+    location: "Dublin",
+    organizer: "New Life Integration",
+    price: "Free",
+    isFree: true,
+    type: "In-Person",
+    description:
+      "An intensive guide on starting your new life in Ireland, finding local networks, and understanding administrative and community structures.",
+  },
+  {
+    title: "Leadership Foundations: Personal Growth Session",
+    date: "Fri 20 Feb 2026",
+    location: "Drogheda",
+    organizer: "Branch Coordination Lead",
+    price: "€25",
+    isFree: false,
+    type: "In-Person",
+    description:
+      "A workshop introducing communication, leadership, event organization, and local volunteer networks.",
+  },
+  {
+    title: "Online Networking: Connect with Your Community",
+    date: "Sun 22 Feb 2026",
+    location: "Online",
+    organizer: "New Life Integration",
+    price: "Free",
+    isFree: true,
+    type: "Online",
+    description:
+      "Virtual session to meet branch members, discuss local needs, and find out about volunteer opportunities in your county.",
+  },
+  {
+    title: "Motivation & Success: Wiz at Life Evening",
+    date: "Sat 28 Feb 2026",
+    location: "Cork",
+    organizer: "Wiz at Life",
+    price: "€35",
+    isFree: false,
+    type: "In-Person",
+    description:
+      "An inspiring evening focusing on goal setting, high-performance habits, and personal wellbeing with professional trainers.",
+  },
+  {
+    title: "Grant Writing Basics: Funding Your Projects",
+    date: "Thu 5 Mar 2026",
+    location: "Galway",
+    organizer: "New Life Integration",
+    price: "Free",
+    isFree: true,
+    type: "In-Person",
+    description:
+      "Learn how to find public community funding, structure grant applications, and build transparent non-profit models.",
+  },
+  {
+    title: "Wellbeing Circle: Mental Health & Integration",
+    date: "Sun 8 Mar 2026",
+    location: "Dundalk",
+    organizer: "Branch Coordination Lead",
+    price: "Free",
+    isFree: true,
+    type: "In-Person",
+    description:
+      "A supportive space focusing on mental resilience, sharing personal migration stories, and practicing evidence-based wellbeing exercises.",
+  },
+];
+---
+
+<Layout title="Upcoming Events" description="Participate in community workshops, networking evenings, and mental wellbeing circles organized by New Life Integration across Ireland.">
+	
+	<!-- Header -->
+	<section class="bg-gradient-to-b from-teal-950/40 via-background to-background pt-20 pb-12 text-center relative border-b border-border/40">
+		<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
+			<span class="text-xs font-extrabold uppercase tracking-widest text-primary font-sans">Our Programs</span>
+			<h1 class="text-4xl sm:text-5xl font-extrabold tracking-tight text-foreground mt-2 mb-4">Upcoming Events</h1>
+			<p class="text-muted-foreground text-base max-w-2xl mx-auto leading-relaxed">
+				Join us for workshops, interactive seminars, and support circles focused on successful integration in Ireland.
+			</p>
+		</div>
+	</section>
+
+	<!-- Event Grid & Interactive Filtering Guidelines -->
+	<section class="py-16">
+		<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+			
+			<!-- Simple Info Note about Free vs Paid -->
+			<div class="mb-10 p-4 rounded-2xl border border-border bg-muted/20 flex flex-wrap gap-4 items-center justify-between text-xs text-muted-foreground">
+				<span class="flex items-center gap-1.5">📌 Filters: Check the free and paid badges on each event for classification.</span>
+				<div class="flex items-center gap-3">
+					<span class="flex items-center gap-1"><span class="h-2.5 w-2.5 bg-green-500/20 text-green-700 rounded-full inline-block"></span> Free Events</span>
+					<span class="flex items-center gap-1"><span class="h-2.5 w-2.5 bg-amber-500/20 text-amber-700 rounded-full inline-block"></span> Paid Workshops</span>
+				</div>
+			</div>
+
+			<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+				{allEvents.map(event => (
+					<div class="bg-card rounded-3xl border border-border/40 p-6 flex flex-col hover:border-primary/40 hover:shadow-xl shadow-md transition-all group">
+						<div class="flex items-center gap-2 mb-4">
+							<span class={`px-2.5 py-0.5 rounded-full text-[10px] font-bold ${event.isFree ? 'bg-green-500/10 text-green-600 dark:text-green-400' : 'bg-amber-500/10 text-amber-600 dark:text-amber-400'}`}>
+								{event.price}
+							</span>
+							<span class="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-primary/10 text-primary">
+								{event.type}
+							</span>
+						</div>
+
+						<h3 class="text-base font-extrabold text-foreground mb-3 line-clamp-2 group-hover:text-primary transition-colors">
+							{event.title}
+						</h3>
+
+						<p class="text-muted-foreground text-xs leading-relaxed mb-6 flex-1">
+							{event.description}
+						</p>
+
+						<div class="space-y-2 text-xs text-muted-foreground border-t border-border/40 pt-4 mb-6">
+							<div class="flex items-center gap-2">
+								<span>📅</span> {event.date}
+							</div>
+							<div class="flex items-center gap-2">
+								<span>📍</span> {event.location}
+							</div>
+							<div class="flex items-center gap-2">
+								<span>👤</span> {event.organizer}
+							</div>
+						</div>
+
+						<a href="/contact">
+							<Button variant="outline" className="w-full rounded-full text-xs font-bold border-primary/20 hover:border-primary">
+								Register Interest
+							</Button>
+						</a>
+					</div>
+				))}
+			</div>
+		</div>
+	</section>
+
+</Layout>
