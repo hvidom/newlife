@@ -45,14 +45,9 @@ The server side uses a modular Hono architecture to handle client requests secur
 
 ### Environment Setup
 
-Create a `.env` file in the root directory of your project to store local secret tokens:
-
-```env
-BREVO_API_KEY=xkeysib-your-private-brevo-api-key
+Create a `.env` file in the root directory of your project to store local secret tokens
 
 ---
-
-## 🚀 Getting Started
 
 ### Development
 
