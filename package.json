@@ -7,7 +7,7 @@
 		"type": "git",
 		"url": "git+https://github.com/hvidom/newlife.git"
 	},
-	"keywords": [],
+	"keywords": ["astro", "cloudflare", "hono", "astro/hono", "shadcn", "tailwindcss", "bun", "biome"],
 	"author": "hvidom",
 	"license": "MIT",
 	"bugs": {
