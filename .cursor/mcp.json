@@ -1,0 +1,19 @@
+{
+  "mcpServers": {
+    "Astro docs": {
+      "url": "https://mcp.docs.astro.build/mcp",
+      "headers": {}
+    },
+    "tailwindcss-server": {
+      "command": "npx",
+      "args": ["-y", "tailwindcss-mcp-server"]
+    },
+    "shadcn": {
+      "command": "npx",
+      "args": [
+        "shadcn@latest",
+        "mcp"
+      ]
+    }
+  }
+}
