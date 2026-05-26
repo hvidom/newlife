@@ -1,4 +1,5 @@
 ---
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import Layout from "@/layouts/Layout.astro";
 
@@ -90,10 +91,10 @@ const comingSoonBranches = ["Waterford", "Wexford", "Sligo", "Kilkenny", "Athlon
 <Layout title="Homepage" description="Building Communities, Transforming Lives. Supporting individuals and families in their integration journey across Ireland.">
 	
 	<!-- ===== HERO SECTION ===== -->
-	<section class="relative overflow-hidden bg-gradient-to-b from-teal-950 via-teal-900 to-background text-white pt-24 pb-20 lg:pt-36 lg:pb-32">
+	<section class="relative overflow-hidden bg-linear-to-b from-teal-950 via-teal-900 to-background text-white pt-24 pb-20 lg:pt-36 lg:pb-32">
 		<!-- Decorative Background Grid & Blur -->
-		<div class="absolute inset-0 z-0 bg-[linear-gradient(to_right,#ffffff03_1px,transparent_1px),linear-gradient(to_bottom,#ffffff03_1px,transparent_1px)] bg-[size:4rem_4rem]"></div>
-		<div class="absolute top-1/4 left-1/2 -translate-x-1/2 h-[35rem] w-[35rem] rounded-full bg-teal-300/10 blur-[120px] z-0"></div>
+		<div class="absolute inset-0 z-0 bg-[linear-gradient(to_right,#ffffff03_1px,transparent_1px),linear-gradient(to_bottom,#ffffff03_1px,transparent_1px)] bg-size-[4rem_4rem]"></div>
+		<div class="absolute top-1/4 left-1/2 -translate-x-1/2 h-140 w-140 rounded-full bg-teal-300/10 blur-[120px] z-0"></div>
 
 		<div class="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
 			<div class="inline-flex items-center gap-2 px-4 py-1.5 bg-white/10 border border-white/20 rounded-full text-xs font-semibold tracking-wide text-white mb-6 backdrop-blur-md shadow-inner">
@@ -103,7 +104,7 @@ const comingSoonBranches = ["Waterford", "Wexford", "Sligo", "Kilkenny", "Athlon
 			
 			<h1 class="scroll-m-20 text-center text-4xl font-extrabold tracking-tight text-balance sm:text-5xl lg:text-6xl xl:text-7xl text-white mb-6 animate-fade-in leading-tight">
 				Building Communities,<br>
-				<span class="text-transparent bg-clip-text bg-gradient-to-r from-teal-300 via-emerald-200 to-teal-400">Transforming Lives</span>
+				<span class="text-transparent bg-clip-text bg-linear-to-r from-teal-300 via-emerald-200 to-teal-400">Transforming Lives</span>
 			</h1>
 			
 			<p class="text-xl text-teal-100/80 max-w-2xl mx-auto mb-10 leading-relaxed">
@@ -143,7 +144,13 @@ const comingSoonBranches = ["Waterford", "Wexford", "Sligo", "Kilkenny", "Athlon
 		<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 			<div class="text-center mb-16">
 				<span class="text-xs font-extrabold uppercase tracking-widest text-primary">Our Approach</span>
-				<h2 class="scroll-m-20 border-b pb-4 text-3xl font-semibold tracking-tight first:mt-0 text-foreground mt-2">What We Do</h2>
+				<h2 class="text-3xl md:text-4xl font-bold tracking-tight">
+					What{" "}
+					<span class="bg-linear-to-b from-primary/60 to-primary text-transparent bg-clip-text">
+					  We{" "}
+					</span>
+					Do
+				  </h2>
 				<p class="text-muted-foreground max-w-2xl mx-auto mt-4 text-sm sm:text-base leading-relaxed">
 					We combine personal growth with real-world support to help newcomers build a life in Ireland.
 				</p>
@@ -152,11 +159,11 @@ const comingSoonBranches = ["Waterford", "Wexford", "Sligo", "Kilkenny", "Athlon
 			<div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
 				{pillars.slice(0, 3).map(pillar => (
 					<div class={`bg-card rounded-3xl p-8 border border-border/40 shadow-md hover:shadow-xl transition-all duration-300 flex flex-col group ${pillar.borderColor}`}>
-						<div class={`h-12 w-12 rounded-2xl bg-gradient-to-br ${pillar.color} flex items-center justify-center mb-6 shrink-0`}>
+						<div class={`h-12 w-12 rounded-2xl bg-linear-to-br ${pillar.color} flex items-center justify-center mb-6 shrink-0`}>
 							<span class={`text-xl ${pillar.textColor}`}>✦</span>
 						</div>
 						<h3 class="scroll-m-20 text-2xl font-semibold tracking-tight text-foreground mb-3">{pillar.title}</h3>
-						<p class="leading-7 [&:not(:first-child)]:mt-4 text-muted-foreground text-xs leading-relaxed">{pillar.description}</p>
+						<p class="leading-7 not-first:mt-4 text-muted-foreground text-xs">{pillar.description}</p>
 					</div>
 				))}
 			</div>
@@ -164,11 +171,11 @@ const comingSoonBranches = ["Waterford", "Wexford", "Sligo", "Kilkenny", "Athlon
 			<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 				{pillars.slice(3).map(pillar => (
 					<div class={`bg-card rounded-3xl p-8 border border-border/40 shadow-md hover:shadow-xl transition-all duration-300 flex flex-col group ${pillar.borderColor}`}>
-						<div class={`h-12 w-12 rounded-2xl bg-gradient-to-br ${pillar.color} flex items-center justify-center mb-6 shrink-0`}>
+						<div class={`h-12 w-12 rounded-2xl bg-linear-to-br ${pillar.color} flex items-center justify-center mb-6 shrink-0`}>
 							<span class={`text-xl ${pillar.textColor}`}>✦</span>
 						</div>
 						<h3 class="scroll-m-20 text-2xl font-semibold tracking-tight text-foreground mb-3">{pillar.title}</h3>
-						<p class="leading-7 [&:not(:first-child)]:mt-4 text-muted-foreground text-xs leading-relaxed">{pillar.description}</p>
+						<p class="leading-7 not-first:mt-4 text-muted-foreground text-xs">{pillar.description}</p>
 					</div>
 				))}
 			</div>
@@ -180,8 +187,14 @@ const comingSoonBranches = ["Waterford", "Wexford", "Sligo", "Kilkenny", "Athlon
 		<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 			<div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
 				<div>
-					<span class="text-xs font-extrabold uppercase tracking-widest text-primary">Don't Miss Out</span>
-					<h2 class="scroll-m-20 border-b pb-4 text-3xl font-semibold tracking-tight first:mt-0 text-foreground mt-2">Upcoming Events</h2>
+					<Badge variant={"destructive"}><span class="text-xs font-extrabold uppercase tracking-widest text-primary">Don't Miss Out</span></Badge>
+					<h2 class="text-3xl border-b mt-2 pb-4 first:mt-0 md:text-4xl font-bold tracking-tight">
+						Upcoming{" "}
+						<span class="bg-linear-to-b from-primary/60 to-primary text-transparent bg-clip-text">
+						  Events{" "}
+						</span>
+						Now
+					  </h2>
 					<p class="text-muted-foreground mt-2 text-xs sm:text-sm">Join us for active workshops, networking, and community integration circles.</p>
 				</div>
 				<a href="/events" class="mt-4 md:mt-0">
@@ -242,7 +255,7 @@ const comingSoonBranches = ["Waterford", "Wexford", "Sligo", "Kilkenny", "Athlon
 			<!-- Active Branches -->
 			<div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 mb-8">
 				{activeBranches.map(city => (
-					<a href="/branches" class="bg-card rounded-3xl p-5 border-2 border-primary/20 hover:border-primary shadow-sm hover:shadow-lg transition-all text-center flex flex-col items-center justify-center bg-gradient-to-br from-card via-card to-primary/5 group">
+					<a href="/branches" class="bg-card rounded-3xl p-5 border-2 border-primary/20 hover:border-primary shadow-sm hover:shadow-lg transition-all text-center flex flex-col items-center justify-center bg-linear-to-br from-card via-card to-primary/5 group">
 						<span class="text-2xl mb-2 group-hover:scale-110 transition-transform">📍</span>
 						<span class="text-sm font-extrabold text-foreground">{city}</span>
 						<span class="text-[9px] font-bold text-primary tracking-widest uppercase mt-1">Active</span>
@@ -272,7 +285,7 @@ const comingSoonBranches = ["Waterford", "Wexford", "Sligo", "Kilkenny", "Athlon
 	</section>
 
 	<!-- ===== CTA BANNER ===== -->
-	<section class="py-16 lg:py-24 bg-gradient-to-r from-teal-900 to-teal-950 border-t border-teal-800 text-white relative overflow-hidden text-center">
+	<section class="py-16 lg:py-24 bg-linear-to-r from-teal-900 to-teal-950 border-t border-teal-800 text-white relative overflow-hidden text-center">
 		<div class="absolute inset-0 z-0 bg-[radial-gradient(ellipse_at_center,#0d948810_0%,transparent_70%)]"></div>
 		
 		<div class="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">

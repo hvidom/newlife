@@ -14,7 +14,7 @@ const navItems = [
   { label: "Contact", href: "/contact" },
 ];
 
-const ctaItems = [{ label: "Open a Branch", href: "/open-branch", variant: "outline" as const }];
+const ctaItems = [{ label: "Open a Branch", href: "/open-branch", variant: "default" as const }];
 ---
 
 <header transition:persist class="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur-md supports-backdrop-filter:bg-background/60 transition-all duration-300">
@@ -33,7 +33,7 @@ const ctaItems = [{ label: "Open a Branch", href: "/open-branch", variant: "outl
 			{navItems.map(item => (
 				<a 
 					href={item.href} 
-					class="text-sm font-semibold text-muted-foreground hover:text-primary hover:underline underline-offset-4 transition-colors"
+					class="text-sm leading-none font-medium hover:text-primary hover:underline underline-offset-4 transition-colors"
 				>
 					{item.label}
 				</a>
