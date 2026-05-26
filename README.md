@@ -1,4 +1,5 @@
 cat << 'EOF' > README.md
+
 # 🌿 New Life Integration Website & API Platform
 
 A high-performance, edge-ready web application and community management platform built for **New Life Integration & Wellbeing Network CLG** (Ireland). This repository marks a transition to a lightning-fast, hybrid architecture powered by **Astro 6**, **Hono**, and **Cloudflare Pages**, entirely managed using **Bun**.
@@ -43,7 +44,9 @@ The server side uses a modular Hono architecture to handle client requests secur
 ## 🚀 Getting Started
 
 ### Environment Setup
+
 Create a `.env` file in the root directory of your project to store local secret tokens:
+
 ```env
 BREVO_API_KEY=xkeysib-your-private-brevo-api-key
 
