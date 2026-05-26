@@ -1,11 +1,11 @@
 ---
 
+import { ClientRouter } from "astro:transitions";
 import BaseHead from "@/components/layouts/blog-head.astro";
 import Footer from "@/components/layouts/footer.astro";
 import Header from "@/components/layouts/header.astro";
 import TailwindIndicator from "@/components/layouts/tailwind-indicator.astro";
 import { cn } from "@/lib/utils";
-import { ClientRouter } from "astro:transitions";
 
 interface Props {
   title: string;
@@ -13,18 +13,18 @@ interface Props {
   image?: string;
   mainClass?: string;
   type?: "website" | "article"; // Добавили тип: article для блогов, website для обычных страниц
-  publishDate?: string;         // Для вывода даты публикации статьи в блоге
-  author?: string;              // Для указания автора статьи
+  publishDate?: string; // Для вывода даты публикации статьи в блоге
+  author?: string; // Для указания автора статьи
 }
 
-const { 
-  title, 
-  description, 
-  image, 
+const {
+  title,
+  description,
+  image,
   mainClass,
-  type = "article", 
-  publishDate, 
-  author = "Newlife Team" 
+  type = "article",
+  publishDate,
+  author = "Newlife Team",
 } = Astro.props;
 ---
 

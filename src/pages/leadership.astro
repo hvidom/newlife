@@ -1,4 +1,5 @@
 ---
+import HeroHeader from "@/components/HeroHeader.astro";
 import { Button } from "@/components/ui/button";
 import Layout from "@/layouts/Layout.astro";
 
@@ -30,18 +31,14 @@ const modules = [
 ];
 ---
 
-<Layout title="Leadership Program" description="Join the New Life Integration Leadership Foundations program. Grow your personal development, event coordination, and grant writing skills.">
+<Layout title="New Life Integration & Wellbeing Network CLG - Leadership Program" description="Join the New Life Integration Leadership Foundations program. Grow your personal development, event coordination, and grant writing skills.">
 	
 	<!-- Header -->
-	<section class="bg-gradient-to-b from-teal-950/40 via-background to-background pt-20 pb-12 text-center relative border-b border-border/40">
-		<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
-			<span class="text-xs font-extrabold uppercase tracking-widest text-primary">Skill Development</span>
-			<h1 class="text-4xl sm:text-5xl font-extrabold tracking-tight text-foreground mt-2 mb-4">Leadership Program</h1>
-			<p class="text-muted-foreground text-base max-w-2xl mx-auto leading-relaxed">
-				Empowering volunteers and community leaders with the knowledge and tools to establish successful integration support systems in Ireland.
-			</p>
-		</div>
-	</section>
+	<HeroHeader 
+	title="Leadership Program" 
+	description="Empowering volunteers and community leaders with the knowledge and tools to establish successful integration support systems in Ireland." 
+	badge="Skill Development"
+	/>
 
 	<!-- Program Pitch -->
 	<section class="py-16">

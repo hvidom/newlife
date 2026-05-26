@@ -1,4 +1,5 @@
 ---
+import HeroHeader from "@/components/HeroHeader.astro";
 import { Button } from "@/components/ui/button";
 import Layout from "@/layouts/Layout.astro";
 
@@ -21,15 +22,11 @@ const workshops = [
 <Layout title="Wiz at Life" description="Experience Wiz at Life evening workshops focusing on motivation, personal development, goal-setting, and wellbeing in Ireland.">
 	
 	<!-- Header -->
-	<section class="bg-gradient-to-b from-teal-950/40 via-background to-background pt-20 pb-12 text-center relative border-b border-border/40">
-		<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
-			<span class="text-xs font-extrabold uppercase tracking-widest text-primary">Motivation & Habits</span>
-			<h1 class="text-4xl sm:text-5xl font-extrabold tracking-tight text-foreground mt-2 mb-4">Wiz at Life</h1>
-			<p class="text-muted-foreground text-base max-w-2xl mx-auto leading-relaxed">
-				Transformative personal development workshops and motivational evenings designed to help you establish powerful daily habits and succeed in Ireland.
-			</p>
-		</div>
-	</section>
+	<HeroHeader 
+	title="Wiz at Life" 
+	description="Transformative personal development workshops and motivational evenings designed to help you establish powerful daily habits and succeed in Ireland." 
+	badge="Motivation & Habits"
+	/>
 
 	<!-- Details -->
 	<section class="py-16">

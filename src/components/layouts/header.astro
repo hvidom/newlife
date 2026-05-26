@@ -1,6 +1,6 @@
 ---
+import logoImg from "@/assets/logo.svg";
 import { Button } from "@/components/ui/button";
-import { siteConfig } from "@/config/site";
 
 const navItems = [
   { label: "Home", href: "/" },
@@ -18,93 +18,98 @@ const ctaItems = [{ label: "Open a Branch", href: "/open-branch", variant: "defa
 ---
 
 <header transition:persist class="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur-md supports-backdrop-filter:bg-background/60 transition-all duration-300">
-	<div class="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-		<!-- Logo -->
-		<a href="/" class="flex items-center gap-2 group">
-			<span class="h-9 w-9 flex items-center justify-center rounded-xl bg-primary text-primary-foreground font-black text-xl tracking-tight shadow-md group-hover:scale-105 transition-transform">N</span>
-			<div class="flex flex-col">
-				<span class="text-base font-extrabold tracking-tight text-foreground leading-none group-hover:text-primary transition-colors">New Life Integration</span>
-				<span class="text-[10px] text-muted-foreground font-medium mt-0.5">Wellbeing Network CLG</span>
-			</div>
-		</a>
+    <div class="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+        <a href="/" class="flex items-center gap-2 group">
+            <span class="h-9 w-9 flex items-center justify-center rounded-xl bg-background text-primary-foreground font-black text-xl tracking-tight shadow-md group-hover:scale-105 transition-transform overflow-hidden">
+                <img src={logoImg.src} alt="New Life Integration Logo" class="h-full w-full object-contain p-1.5" />
+            </span>
+            <div class="flex flex-col">
+                <span class="text-base font-extrabold tracking-tight text-foreground leading-none group-hover:text-primary transition-colors">New Life Integration</span>
+                <span class="text-[10px] text-muted-foreground font-medium mt-0.5">Wellbeing Network CLG</span>
+            </div>
+        </a>
 
-		<!-- Desktop Navigation -->
-		<nav class="hidden lg:flex items-center gap-6">
-			{navItems.map(item => (
-				<a 
-					href={item.href} 
-					class="text-sm leading-none font-medium hover:text-primary hover:underline underline-offset-4 transition-colors"
-				>
-					{item.label}
-				</a>
-			))}
-		</nav>
+        <nav class="hidden lg:flex items-center gap-6">
+            {navItems.map(item => (
+                <a 
+                    href={item.href} 
+                    class="text-sm leading-none font-medium hover:text-primary hover:underline underline-offset-4 transition-colors"
+                >
+                    {item.label}
+                </a>
+            ))}
+        </nav>
 
-		<!-- Desktop Action Button -->
-		<div class="hidden lg:flex items-center gap-3">
-			{ctaItems.map(item => (
-				<a href={item.href}>
-					<Button variant={item.variant} size="sm" className="rounded-full">
-						{item.label}
-					</Button>
-				</a>
-			))}
-		</div>
+        <div class="hidden lg:flex items-center gap-3">
+            {ctaItems.map(item => (
+                <a href={item.href}>
+                    <Button variant={item.variant} size="sm" className="rounded-full">
+                        {item.label}
+                    </Button>
+                </a>
+            ))}
+        </div>
 
-		<!-- Mobile Menu Button -->
-		<button 
-			id="mobile-menu-toggle" 
-			class="flex h-10 w-10 items-center justify-center rounded-lg border border-border/40 text-foreground hover:bg-muted lg:hidden"
-			aria-label="Toggle menu"
-		>
-			<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6 menu-icon"><line x1="4" x2="20" y1="12" y2="12"></line><line x1="4" x2="20" y1="6" y2="6"></line><line x1="4" x2="20" y1="18" y2="18"></line></svg>
-			<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6 close-icon hidden"><line x1="18" x2="6" y1="6" y2="18"></line><line x1="6" x2="18" y1="6" y2="18"></line></svg>
-		</button>
-	</div>
+        <button 
+            id="mobile-menu-toggle" 
+            class="flex h-10 w-10 items-center justify-center rounded-lg border border-border/40 text-foreground hover:bg-muted lg:hidden"
+            aria-label="Toggle menu"
+        >
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6 menu-icon"><line x1="4" x2="20" y1="12" y2="12"></line><line x1="4" x2="20" y1="6" y2="6"></line><line x1="4" x2="20" y1="18" y2="18"></line></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6 close-icon hidden"><line x1="18" x2="6" y1="6" y2="18"></line><line x1="6" x2="18" y1="6" y2="18"></line></svg>
+        </button>
+    </div>
 
-	<!-- Mobile Menu Panel -->
-	<div 
-		id="mobile-menu" 
-		class="hidden lg:hidden border-t border-border/40 bg-background/95 backdrop-blur-md px-4 py-6 space-y-4 animate-in fade-in slide-in-from-top-5 duration-200"
-	>
-		<nav class="flex flex-col gap-3">
-			{navItems.map(item => (
-				<a 
-					href={item.href} 
-					class="text-sm font-semibold text-muted-foreground hover:text-primary py-2 px-3 rounded-lg hover:bg-muted transition-all"
-				>
-					{item.label}
-				</a>
-			))}
-		</nav>
-		<div class="border-t border-border/40 pt-4 flex flex-col gap-2">
-			{ctaItems.map(item => (
-				<a href={item.href} class="w-full">
-					<Button variant={item.variant} className="w-full rounded-full">
-						{item.label}
-					</Button>
-				</a>
-			))}
-		</div>
-	</div>
+    <div 
+        id="mobile-menu" 
+        class="hidden lg:hidden border-t border-border/40 bg-background/95 backdrop-blur-md px-4 py-6 space-y-4 animate-in fade-in slide-in-from-top-5 duration-200"
+    >
+        <nav class="flex flex-col gap-3">
+            {navItems.map(item => (
+                <a 
+                    href={item.href} 
+                    class="text-sm font-semibold text-muted-foreground hover:text-primary py-2 px-3 rounded-lg hover:bg-muted transition-all"
+                >
+                    {item.label}
+                </a>
+            ))}
+        </nav>
+        <div class="border-t border-border/40 pt-4 flex flex-col gap-2">
+            {ctaItems.map(item => (
+                <a href={item.href} class="w-full">
+                    <Button variant={item.variant} className="w-full rounded-full">
+                        {item.label}
+                    </Button>
+                </a>
+            ))}
+        </div>
+    </div>
 </header>
 
 <script>
-	const toggleBtn = document.getElementById('mobile-menu-toggle');
-	const mobileMenu = document.getElementById('mobile-menu');
-	const menuIcon = toggleBtn?.querySelector('.menu-icon');
-	const closeIcon = toggleBtn?.querySelector('.close-icon');
+    // Функция инициализации меню, совместимая с View Transitions (transition:persist)
+    function initMenu() {
+        const toggleBtn = document.getElementById('mobile-menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIcon = toggleBtn?.querySelector('.menu-icon');
+        const closeIcon = toggleBtn?.querySelector('.close-icon');
 
-	toggleBtn?.addEventListener('click', () => {
-		const isHidden = mobileMenu?.classList.contains('hidden');
-		if (isHidden) {
-			mobileMenu?.classList.remove('hidden');
-			menuIcon?.classList.add('hidden');
-			closeIcon?.classList.remove('hidden');
-		} else {
-			mobileMenu?.classList.add('hidden');
-			menuIcon?.classList.remove('hidden');
-			closeIcon?.classList.add('hidden');
-		}
-	});
+        toggleBtn?.addEventListener('click', () => {
+            const isHidden = mobileMenu?.classList.contains('hidden');
+            if (isHidden) {
+                mobileMenu?.classList.remove('hidden');
+                menuIcon?.classList.add('hidden');
+                closeIcon?.classList.remove('hidden');
+            } else {
+                mobileMenu?.classList.add('hidden');
+                menuIcon?.classList.remove('hidden');
+                closeIcon?.classList.add('hidden');
+            }
+        });
+    }
+
+    // Запускаем при первой загрузке
+    initMenu();
+    // Перезапускаем при смене страниц через View Transitions
+    document.addEventListener('astro:page-load', initMenu);
 </script>

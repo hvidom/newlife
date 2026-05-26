@@ -11,113 +11,114 @@ app.use(actions());
 
 // Вспомогательная функция для отправки транзакционных писем через Brevo SMTP
 async function sendBrevoEmail({
-    apiKey,
-    toEmail,
-    toName,
-    subject,
-    htmlContent,
-    replyTo,
+	apiKey,
+	toEmail,
+	toName,
+	subject,
+	htmlContent,
+	replyTo,
 }: {
-    apiKey: string;
-    toEmail: string;
-    toName: string;
-    subject: string;
-    htmlContent: string;
-    replyTo?: { email: string; name: string };
+	apiKey: string;
+	toEmail: string;
+	toName: string;
+	subject: string;
+	htmlContent: string;
+	replyTo?: { email: string; name: string };
 }) {
-    const response = await fetch("https://api.brevo.com/v3/smtp/email", {
-        method: "POST",
-        headers: {
-            "api-key": apiKey,
-            "content-type": "application/json",
-            accept: "application/json",
-        },
-        body: JSON.stringify({
-            sender: {
-                name: "New Life Integration Website",
-                email: "info@newlifeintegration.ie",
-            },
-            to: [
-                {
-                    email: toEmail,
-                    name: toName,
-                },
-            ],
-            replyTo: replyTo,
-            subject: subject,
-            htmlContent: htmlContent,
-        }),
-    });
+	const response = await fetch("https://api.brevo.com/v3/smtp/email", {
+		method: "POST",
+		headers: {
+			"api-key": apiKey,
+			"content-type": "application/json",
+			accept: "application/json",
+		},
+		body: JSON.stringify({
+			sender: {
+				name: "New Life Integration Website",
+				email: "info@newlifeintegration.ie",
+			},
+			to: [
+				{
+					email: toEmail,
+					name: toName,
+				},
+			],
+			replyTo: replyTo,
+			subject: subject,
+			htmlContent: htmlContent,
+		}),
+	});
 
-    if (!response.ok) {
-        const errorText = await response.text();
-        throw new Error(`Brevo SMTP API Error (${response.status}): ${errorText}`);
-    }
+	if (!response.ok) {
+		const errorText = await response.text();
+		throw new Error(`Brevo SMTP API Error (${response.status}): ${errorText}`);
+	}
 
-    return await response.json();
+	return await response.json();
 }
 
 // Вспомогательная функция для добавления/обновления контактов в списках Brevo CRM
 async function upsertBrevoContact({
-    apiKey,
-    email,
-    firstName,
-    lastName = "",
-    listIds = [3], // По умолчанию список "website" (ID 3)
+	apiKey,
+	email,
+	firstName,
+	lastName = "",
+	listIds = [3], // По умолчанию список "website" (ID 3)
 }: {
-    apiKey: string;
-    email: string;
-    firstName: string;
-    lastName?: string;
-    listIds?: number[];
+	apiKey: string;
+	email: string;
+	firstName: string;
+	lastName?: string;
+	listIds?: number[];
 }) {
-    const response = await fetch("https://api.brevo.com/v3/contacts", {
-        method: "POST",
-        headers: {
-            "api-key": apiKey,
-            "content-type": "application/json",
-            accept: "application/json",
-        },
-        body: JSON.stringify({
-            email: email,
-            attributes: {
-                FIRSTNAME: firstName,
-                LASTNAME: lastName,
-            },
-            listIds: listIds,
-            updateEnabled: true,
-        }),
-    });
+	const response = await fetch("https://api.brevo.com/v3/contacts", {
+		method: "POST",
+		headers: {
+			"api-key": apiKey,
+			"content-type": "application/json",
+			accept: "application/json",
+		},
+		body: JSON.stringify({
+			email: email,
+			attributes: {
+				FIRSTNAME: firstName,
+				LASTNAME: lastName,
+			},
+			listIds: listIds,
+			updateEnabled: true,
+		}),
+	});
 
-    if (!response.ok) {
-        const text = await response.text();
-        console.error("[BREVO CRM SYSTEM ERROR]: Failed to upsert contact:", text);
-    }
+	if (!response.ok) {
+		const text = await response.text();
+		console.error("[BREVO CRM SYSTEM ERROR]: Failed to upsert contact:", text);
+	}
 }
 
 // 1. Эндпоинт стандартной контактной формы
 app.post("/api/contact", async (c) => {
-    try {
-        const { fullName, email, phone, subject, message } = await c.req.json();
+	try {
+		const { fullName, email, phone, subject, message } = await c.req.json();
 
-        if (!fullName || !email || !subject || !message) {
-            return c.json({ error: "Missing required fields" }, 400);
-        }
+		if (!fullName || !email || !subject || !message) {
+			return c.json({ error: "Missing required fields" }, 400);
+		}
 
-        // Поиск ключа для любых режимов запуска (Local Dev / Cloudflare Prod)
-        const BREVO_API_KEY = c.env?.BREVO_API_KEY || import.meta.env.BREVO_API_KEY || process.env.BREVO_API_KEY;
-        if (!BREVO_API_KEY) {
-            console.warn("BREVO_API_KEY is not defined. Simulating execution (Dev Mode).");
-            return c.json({ success: true, mode: "development_mock" });
-        }
+		// Поиск ключа для любых режимов запуска (Local Dev / Cloudflare Prod)
+		const BREVO_API_KEY =
+			c.env?.BREVO_API_KEY || import.meta.env.BREVO_API_KEY || process.env.BREVO_API_KEY;
+		if (!BREVO_API_KEY) {
+			console.warn("BREVO_API_KEY is not defined. Simulating execution (Dev Mode).");
+			return c.json({ success: true, mode: "development_mock" });
+		}
 
-        // Параллельно сохраняем человека в контакты CRM (Разбиваем fullName на Имя и Фамилию для красоты)
-        const [firstName, ...lastNameParts] = fullName.split(" ");
-        const lastName = lastNameParts.join(" ");
-        await upsertBrevoContact({ apiKey: BREVO_API_KEY, email, firstName, lastName });
+		// Параллельно сохраняем человека в контакты CRM (Разбиваем fullName на Имя и Фамилию для красоты)
+		const [firstName, ...lastNameParts] = fullName.split(" ");
+		const lastName = lastNameParts.join(" ");
+		await upsertBrevoContact({ apiKey: BREVO_API_KEY, email, firstName, lastName });
 
-        // Письмо для Команды NLI
-        const teamHtml = `
+		// Письмо для Команды NLI
+		const teamHtml = `
             <h2>New Contact Form Inquiry</h2>
             <p>A user has sent an inquiry via the website contact form.</p>
             <table border="1" cellpadding="6" style="border-collapse: collapse; border-color: #ddd;">
@@ -129,17 +130,17 @@ app.post("/api/contact", async (c) => {
             </table>
         `;
 
-        await sendBrevoEmail({
-            apiKey: BREVO_API_KEY,
-            toEmail: "info@newlifeintegration.ie",
-            toName: "New Life Integration Team",
-            subject: `[Web Inquiry] ${subject} - from ${fullName}`,
-            htmlContent: teamHtml,
-            replyTo: { email, name: fullName },
-        });
+		await sendBrevoEmail({
+			apiKey: BREVO_API_KEY,
+			toEmail: "info@newlifeintegration.ie",
+			toName: "New Life Integration Team",
+			subject: `[Web Inquiry] ${subject} - from ${fullName}`,
+			htmlContent: teamHtml,
+			replyTo: { email, name: fullName },
+		});
 
-        // Письмо-подтверждение Пользователю
-        const userHtml = `
+		// Письмо-подтверждение Пользователю
+		const userHtml = `
             <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; color: #333; line-height: 1.6;">
                 <h2 style="color: #0d9488;">Hello ${fullName},</h2>
                 <p>Thank you for reaching out to <strong>New Life Integration & Wellbeing Network CLG</strong>!</p>
@@ -157,44 +158,46 @@ app.post("/api/contact", async (c) => {
             </div>
         `;
 
-        await sendBrevoEmail({
-            apiKey: BREVO_API_KEY,
-            toEmail: email,
-            toName: fullName,
-            subject: `We've received your message: ${subject}`,
-            htmlContent: userHtml,
-        });
+		await sendBrevoEmail({
+			apiKey: BREVO_API_KEY,
+			toEmail: email,
+			toName: fullName,
+			subject: `We've received your message: ${subject}`,
+			htmlContent: userHtml,
+		});
 
-        return c.json({ success: true });
-    } catch (error) {
-        const message = error instanceof Error ? error.message : String(error);
-        console.error("Contact API Exception:", error);
-        return c.json({ error: message || "Internal server error" }, 500);
-    }
+		return c.json({ success: true });
+	} catch (error) {
+		const message = error instanceof Error ? error.message : String(error);
+		console.error("Contact API Exception:", error);
+		return c.json({ error: message || "Internal server error" }, 500);
+	}
 });
 
 // 2. Эндпоинт отправки заявок на открытие новых филиалов
 app.post("/api/open-branch", async (c) => {
-    try {
-        const { city, fullName, email, phone, background, events, team, languages } = await c.req.json();
+	try {
+		const { city, fullName, email, phone, background, events, team, languages } =
+			await c.req.json();
 
-        if (!city || !fullName || !email || !phone || !background) {
-            return c.json({ error: "Missing required fields" }, 400);
-        }
+		if (!city || !fullName || !email || !phone || !background) {
+			return c.json({ error: "Missing required fields" }, 400);
+		}
 
-        const BREVO_API_KEY = c.env?.BREVO_API_KEY || import.meta.env.BREVO_API_KEY || process.env.BREVO_API_KEY;
-        if (!BREVO_API_KEY) {
-            console.warn("BREVO_API_KEY is not defined. Simulating application send (Dev Mode).");
-            return c.json({ success: true, mode: "development_mock" });
-        }
+		const BREVO_API_KEY =
+			c.env?.BREVO_API_KEY || import.meta.env.BREVO_API_KEY || process.env.BREVO_API_KEY;
+		if (!BREVO_API_KEY) {
+			console.warn("BREVO_API_KEY is not defined. Simulating application send (Dev Mode).");
+			return c.json({ success: true, mode: "development_mock" });
+		}
 
-        // Сохраняем лидера филиала в CRM контакты
-        const [firstName, ...lastNameParts] = fullName.split(" ");
-        const lastName = lastNameParts.join(" ");
-        await upsertBrevoContact({ apiKey: BREVO_API_KEY, email, firstName, lastName });
+		// Сохраняем лидера филиала в CRM контакты
+		const [firstName, ...lastNameParts] = fullName.split(" ");
+		const lastName = lastNameParts.join(" ");
+		await upsertBrevoContact({ apiKey: BREVO_API_KEY, email, firstName, lastName });
 
-        // Письмо для Команды NLI
-        const teamHtml = `
+		// Письмо для Команды NLI
+		const teamHtml = `
             <h2>New Branch Launch Expression of Interest</h2>
             <p>An application has been submitted to open a new branch in <strong>${city}</strong>.</p>
             <table border="1" cellpadding="6" style="border-collapse: collapse; border-color: #ddd;">
@@ -209,17 +212,17 @@ app.post("/api/open-branch", async (c) => {
             </table>
         `;
 
-        await sendBrevoEmail({
-            apiKey: BREVO_API_KEY,
-            toEmail: "info@newlifeintegration.ie",
-            toName: "New Life Integration Team",
-            subject: `[New Branch Application] ${city} - from ${fullName}`,
-            htmlContent: teamHtml,
-            replyTo: { email, name: fullName },
-        });
+		await sendBrevoEmail({
+			apiKey: BREVO_API_KEY,
+			toEmail: "info@newlifeintegration.ie",
+			toName: "New Life Integration Team",
+			subject: `[New Branch Application] ${city} - from ${fullName}`,
+			htmlContent: teamHtml,
+			replyTo: { email, name: fullName },
+		});
 
-        // Письмо-подтверждение Заявителю
-        const userHtml = `
+		// Письмо-подтверждение Заявителю
+		const userHtml = `
             <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; color: #333; line-height: 1.6;">
                 <h2 style="color: #0d9488;">Hello ${fullName},</h2>
                 <p>Thank you for expressing your interest in opening a community branch of <strong>New Life Integration & Wellbeing Network CLG</strong> in <strong>${city}</strong>!</p>
@@ -234,46 +237,47 @@ app.post("/api/open-branch", async (c) => {
             </div>
         `;
 
-        await sendBrevoEmail({
-            apiKey: BREVO_API_KEY,
-            toEmail: email,
-            toName: fullName,
-            subject: `Thank you for your Branch Application - ${city}`,
-            htmlContent: userHtml,
-        });
+		await sendBrevoEmail({
+			apiKey: BREVO_API_KEY,
+			toEmail: email,
+			toName: fullName,
+			subject: `Thank you for your Branch Application - ${city}`,
+			htmlContent: userHtml,
+		});
 
-        return c.json({ success: true });
-    } catch (error) {
-        const message = error instanceof Error ? error.message : String(error);
-        console.error("Open Branch API Exception:", error);
-        return c.json({ error: message || "Internal server error" }, 500);
-    }
+		return c.json({ success: true });
+	} catch (error) {
+		const message = error instanceof Error ? error.message : String(error);
+		console.error("Open Branch API Exception:", error);
+		return c.json({ error: message || "Internal server error" }, 500);
+	}
 });
 
 // 3. Эндпоинт чистой подписки на новостную рассылку (Newsletter)
 app.post("/api/subscribe", async (c) => {
-    try {
-        const { email } = await c.req.json();
-        if (!email) return c.json({ error: "Email is required" }, 400);
+	try {
+		const { email } = await c.req.json();
+		if (!email) return c.json({ error: "Email is required" }, 400);
 
-        const BREVO_API_KEY = c.env?.BREVO_API_KEY || import.meta.env.BREVO_API_KEY || process.env.BREVO_API_KEY;
-        if (!BREVO_API_KEY) {
-            return c.json({ success: true, mode: "development_mock" });
-        }
+		const BREVO_API_KEY =
+			c.env?.BREVO_API_KEY || import.meta.env.BREVO_API_KEY || process.env.BREVO_API_KEY;
+		if (!BREVO_API_KEY) {
+			return c.json({ success: true, mode: "development_mock" });
+		}
 
-        // Добавляем подписчика в CRM список website (ID 3)
-        await upsertBrevoContact({
-            apiKey: BREVO_API_KEY,
-            email: email,
-            firstName: "Newsletter",
-            lastName: "Subscriber"
-        });
+		// Добавляем подписчика в CRM список website (ID 3)
+		await upsertBrevoContact({
+			apiKey: BREVO_API_KEY,
+			email: email,
+			firstName: "Newsletter",
+			lastName: "Subscriber",
+		});
 
-        return c.json({ success: true });
-    } catch (error) {
-        console.error("Newsletter Subscribe API Error:", error);
-        return c.json({ error: "Internal server error" }, 500);
-    }
+		return c.json({ success: true });
+	} catch (error) {
+		console.error("Newsletter Subscribe API Error:", error);
+		return c.json({ error: "Internal server error" }, 500);
+	}
 });
 
 app.use(pages());

@@ -8,31 +8,31 @@ interface Props {
   description?: string;
   image?: string;
   type?: "website" | "article"; // Добавили тип: article для блогов, website для обычных страниц
-  publishDate?: string;         // Для вывода даты публикации статьи в блоге
-  author?: string;              // Для указания автора статьи
+  publishDate?: string; // Для вывода даты публикации статьи в блоге
+  author?: string; // Для указания автора статьи
 }
 
-const { 
-  title, 
-  description, 
-  image, 
-  type = "article", 
-  publishDate, 
-  author = "Newlife Team" 
+const {
+  title,
+  description,
+  image,
+  type = "article",
+  publishDate,
+  author = "Newlife Team",
 } = Astro.props;
-
 
 const canonicalURL = new URL(Astro.url.pathname, siteConfig.url);
 
-const seoDescription = description 
-  ? description.length > 155 ? `${description.substring(0, 152)}...` : description
+const seoDescription = description
+  ? description.length > 155
+    ? `${description.substring(0, 152)}...`
+    : description
   : siteConfig.description;
-
 
 const seoTitle = title ? `${title} | Newlife` : "Newlife Integration & Wellbeing";
 
-const ogImageUrl = image 
-  ? new URL(image, siteConfig.url) 
+const ogImageUrl = image
+  ? new URL(image, siteConfig.url)
   : new URL("/fallback.png", siteConfig.url);
 ---
 

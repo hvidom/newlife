@@ -1,4 +1,6 @@
 ---
+import HeroHeader from "@/components/HeroHeader.astro";
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import Layout from "@/layouts/Layout.astro";
 
@@ -56,18 +58,16 @@ const activeBranches = [
 const comingSoon = ["Waterford", "Wexford", "Sligo", "Kilkenny", "Athlone", "Letterkenny"];
 ---
 
-<Layout title="Our Branches" description="Explore active community branches of New Life Integration across Ireland, find local coordinators, or apply to launch a branch.">
+<Layout title="New Life Integration & Wellbeing Network CLG - Our Branches" description="Explore active community branches of New Life Integration across Ireland, find local coordinators, or apply to launch a branch.">
 	
 	<!-- Header -->
-	<section class="bg-gradient-to-b from-teal-950/40 via-background to-background pt-20 pb-12 text-center relative border-b border-border/40">
-		<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
-			<span class="text-xs font-extrabold uppercase tracking-widest text-primary">Local Support</span>
-			<h1 class="text-4xl sm:text-5xl font-extrabold tracking-tight text-foreground mt-2 mb-4">Our Branches</h1>
-			<p class="text-muted-foreground text-base max-w-2xl mx-auto leading-relaxed">
-				Connecting newcomers with volunteers and integration structures in their local communities across Ireland.
-			</p>
-		</div>
-	</section>
+
+		<!-- Hero Header -->
+		<HeroHeader 
+        title="Our Branches" 
+        description="Connecting newcomers with volunteers and integration structures in their local communities across Ireland." 
+        badge="Local Support"
+    />
 
 	<!-- Active Branches -->
 	<section class="py-16">

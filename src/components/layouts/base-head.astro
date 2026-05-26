@@ -15,15 +15,18 @@ const { title, description, image } = Astro.props;
 const canonicalURL = new URL(Astro.url.pathname, siteConfig.url);
 
 // SEO-оптимизация текстов под стандарты Google
-const seoDescription = description 
-  ? description.length > 155 ? `${description.substring(0, 152)}...` : description
+const seoDescription = description
+  ? description.length > 155
+    ? `${description.substring(0, 152)}...`
+    : description
   : siteConfig.description;
 
 const seoTitle = title ? `${title} | Newlife` : "Newlife Integration & Wellbeing";
-
+const keywords =
+  "New Life Integration, Wellbeing Network Ireland, community integration CLG, social inclusion Dublin, migrant support Ireland, creative programs wellbeing, community safety, personal development Ireland";
 // Картинка превью (если для страницы не задана уникальная, берем дефолтный fallback сайта)
-const ogImageUrl = image 
-  ? new URL(image, siteConfig.url) 
+const ogImageUrl = image
+  ? new URL(image, siteConfig.url)
   : new URL("/fallback.png", siteConfig.url);
 ---
 
@@ -41,6 +44,7 @@ const ogImageUrl = image
 <meta name="title" content={seoTitle}>
 <meta name="description" content={seoDescription}>
 <link rel="canonical" href={canonicalURL}>
+<meta name="keywords" content={keywords} />
 
 <meta property="og:type" content="website">
 <meta property="og:url" content={canonicalURL}>

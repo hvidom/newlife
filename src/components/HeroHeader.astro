@@ -1,0 +1,105 @@
+---
+// src/components/HeroHeader.astro
+import { Badge } from "./ui/badge";
+
+type Props = {
+  title: string;
+  description?: string;
+  badge?: string;
+};
+
+const { title, description, badge } = Astro.props;
+---
+
+<section class="relative pt-32 pb-24 text-center border-b border-border/40 overflow-hidden bg-trancperent">
+    
+    <div id="particle-container" class="absolute inset-0 z-0 select-none pointer-events-none">
+        </div>
+
+    <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 relative z-10">
+        {badge && (
+            <Badge variant="destructive" className="bg-primary/10 text-primary border-primary/20 shadow-none">
+                <span class="text-xs font-extrabold uppercase tracking-widest">{badge}</span>
+            </Badge>
+        )}
+        
+        <h1 class="text-4xl sm:text-5xl font-extrabold tracking-tight text-foreground mt-4 mb-4">
+            <span class="bg-linear-to-b from-foreground to-foreground/80 text-transparent bg-clip-text">
+                {title}
+            </span>
+        </h1>
+        
+        {description && (
+            <p class="text-muted-foreground font-medium text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
+                {description}
+            </p>
+        )}
+    </div>
+</section>
+
+<style is:global>
+    .particle {
+        position: absolute;
+        border-radius: 50%;
+        /* Плавный переход для бесконечной анимации хаотичного движения */
+        transition: transform 60s linear; 
+    }
+</style>
+
+<script>
+    function initParticles() {
+        const container = document.getElementById("particle-container");
+        if (!container) return;
+        container.innerHTML = "";
+
+        const totalParticles = 30;
+
+        for (let i = 1; i <= totalParticles; i++) {
+            const particle = document.createElement("div");
+            particle.classList.add("particle");
+
+            // 1. Случайный размер от 5 до 10 пикселей (как в SCSS: random(5) + 5)
+            const size = Math.floor(Math.random() * 5) + 5;
+            particle.style.width = `${size}px`;
+            particle.style.height = `${size}px`;
+
+            // 2. Случайная прозрачность (как в SCSS: random(100)/100)
+            particle.style.opacity = (Math.random()).toString();
+
+            // 3. Случайный цвет HSL (как в SCSS: hsl(random(360), 70%, 50%))
+            const hue = Math.floor(Math.random() * 360);
+            particle.style.background = `hsl(${hue}, 70%, 50%)`;
+
+            // Функция для создания случайных координат внутри хедера
+            const getRandomTransform = () => {
+                const x = Math.floor(Math.random() * 90); // 0-90 vw
+                const y = Math.floor(Math.random() * 90); // 0-90 vh
+                const z = Math.floor(Math.random() * 100); // 0-100 px
+                return `translate3d(${x}vw, ${y}vh, ${z}px)`;
+            };
+
+            // Задаем начальную позицию
+            particle.style.transform = getRandomTransform();
+
+            // Запускаем бесконечный цикл изменения траектории каждые 60 секунд (60s infinite из CodePen)
+            // Добавляем небольшую задержку старта для каждой частицы, чтобы они двигались несинхронно
+            setTimeout(() => {
+                particle.style.transform = getRandomTransform();
+                
+                setInterval(() => {
+                    particle.style.transform = getRandomTransform();
+                }, 60000);
+            }, i * 200);
+
+            container.appendChild(particle);
+        }
+    }
+
+    // Инициализация при загрузке страницы
+    document.addEventListener("astro:page-load", initParticles);
+    if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", initParticles);
+    } else {
+        initParticles();
+    }
+</script>

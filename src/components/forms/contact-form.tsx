@@ -78,7 +78,7 @@ export function ContactForm() {
 				<div className="mb-6 flex items-start gap-3 rounded-2xl bg-green-50 p-4 border border-green-200 text-green-800 animate-in fade-in zoom-in-95 duration-200">
 					<CheckCircle className="h-5 w-5 shrink-0 text-green-600 mt-0.5" />
 					<div>
-						<h4 class="font-bold text-sm">Inquiry Submitted!</h4>
+						<h4 className="font-bold text-sm">Inquiry Submitted!</h4>
 						<p className="text-xs mt-0.5 leading-relaxed">
 							Thank you for reaching out! We have received your message and will get back to you
 							within 2–3 business days.
@@ -91,7 +91,7 @@ export function ContactForm() {
 				<div className="mb-6 flex items-start gap-3 rounded-2xl bg-destructive/10 p-4 border border-destructive/20 text-destructive animate-in fade-in zoom-in-95 duration-200">
 					<AlertCircle className="h-5 w-5 shrink-0 text-destructive mt-0.5" />
 					<div>
-						<h4 class="font-bold text-sm">Submission Error</h4>
+						<h4 className="font-bold text-sm">Submission Error</h4>
 						<p className="text-xs mt-0.5 leading-relaxed">{errorMessage}</p>
 					</div>
 				</div>

@@ -1,5 +1,5 @@
 ---
-import { siteConfig } from "@/config/site";
+import logoImg from "@/assets/logo.svg";
 
 const footerLinks = [
   { label: "Home", href: "/" },
@@ -34,7 +34,9 @@ const socialLinks = [
 			<!-- Column 1: Info -->
 			<div class="space-y-4">
 				<a href="/" class="flex items-center gap-2">
-					<span class="h-8 w-8 flex items-center justify-center rounded-xl bg-primary text-primary-foreground font-black text-lg">N</span>
+					<span class="h-9 w-9 flex items-center justify-center rounded-xl bg-background text-primary-foreground font-black text-xl tracking-tight shadow-md group-hover:scale-105 transition-transform overflow-hidden">
+						<img src={logoImg.src} alt="New Life Integration Logo" class="h-full w-full object-contain p-1.5" />
+					</span>
 					<div class="flex flex-col">
 						<span class="text-sm font-extrabold tracking-tight text-foreground leading-none">New Life Integration</span>
 						<span class="text-[9px] text-muted-foreground font-medium mt-0.5">Wellbeing Network CLG</span>
