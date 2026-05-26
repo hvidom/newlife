@@ -3,7 +3,7 @@ export const siteConfig = {
 	title: "Newlife",
 	author: "hvidom",
 	description: "New astro project",
-	url: "https://newlife.devopsick.workers.dev/",
+	url: "https://newlifeintegration.ie",
 
 	// SEO & Metadata
 	defaultLocale: "en",
@@ -11,7 +11,7 @@ export const siteConfig = {
 		creator: undefined,
 		site: undefined,
 	},
-	defaultOgImage: "/og-image.png",
+	defaultOgImage: "/fallback.png",
 
 	// Navigation
 	navigation: [{ href: "/", label: "Home" }],
