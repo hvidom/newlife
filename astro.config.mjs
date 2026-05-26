@@ -25,11 +25,6 @@ export default defineConfig({
 		advancedRouting: true,
 	},
 	vite: {
-		plugins: [tailwindcss()],
-		resolve: {
-			alias: {
-			  "@": path.resolve(__dirname, "./src"),
-			},
-		  },
+		plugins: [tailwindcss()]
 	},
 });
