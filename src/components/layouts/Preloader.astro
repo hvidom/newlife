@@ -1,37 +1,49 @@
 ---
-
+// Preloader.astro
 ---
 
-<div id="global-preloader" class="fixed inset-0 z- flex flex-col items-center justify-center bg-background transition-opacity duration-500 pointer-events-none opacity-100">
-    <div class="flex flex-col items-center gap-4">
-      <div class="h-10 w-10 animate-spin rounded-full border-4 border-muted border-t-primary"></div>
-      <p class="text-sm font-medium text-muted-foreground tracking-wider animate-pulse">Loading...</p>
-    </div>
+<div 
+  id="global-preloader" 
+  transition:persist
+  class="fixed inset-0 z- flex flex-col items-center justify-center bg-background transition-opacity duration-500 pointer-events-none opacity-100"
+>
+  <div class="flex flex-col items-center gap-4">
+    <div class="h-10 w-10 animate-spin rounded-full border-4 border-muted border-t-primary"></div>
+    <p class="text-sm font-medium text-muted-foreground tracking-wider animate-pulse">Loading...</p>
+  </div>
 </div>
 
-
 <script is:inline>
-    const showLoader = () => {
-      const loader = document.getElementById('global-preloader');
-      if (loader) {
-        loader.style.opacity = '1';
-        loader.style.pointerEvents = 'auto';
-      }
-    };
-
-    const hideLoader = () => {
-      const loader = document.getElementById('global-preloader');
-      if (loader) {
-        loader.style.opacity = '0';
-        loader.style.pointerEvents = 'none';
-      }
-    };
-    if (document.readyState === 'complete') {
-      hideLoader();
-    } else {
-      window.addEventListener('load', hideLoader);
+  // Выносим функции в глобальную область, чтобы Astro не терял их при навигации
+  window.__showPreloader = () => {
+    const loader = document.getElementById('global-preloader');
+    if (loader) {
+      loader.style.opacity = '1';
+      loader.style.pointerEvents = 'auto';
     }
+  };
 
-    document.addEventListener('astro:before-preparation', showLoader);
-    document.addEventListener('astro:after-swap', hideLoader);
-  </script>
+  window.__hidePreloader = () => {
+    const loader = document.getElementById('global-preloader');
+    if (loader) {
+      loader.style.opacity = '0';
+      loader.style.pointerEvents = 'none';
+    }
+  };
+
+  // Инициализация при самой первой жесткой загрузке сайта
+  if (document.readyState === 'complete') {
+    window.__hidePreloader();
+  } else {
+    window.addEventListener('load', window.__hidePreloader);
+  }
+
+  // Защита: на случай, если страница загружается слишком быстро или из кэша
+  document.addEventListener('astro:page-load', () => {
+    window.__hidePreloader();
+  });
+
+  // Слушатели событий навигации ClientRouter
+  document.addEventListener('astro:before-preparation', window.__showPreloader);
+  document.addEventListener('astro:after-swap', window.__hidePreloader);
+</script>
