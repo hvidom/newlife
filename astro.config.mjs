@@ -6,7 +6,6 @@ import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
 import tailwindcss from "@tailwindcss/vite";
 import { siteConfig } from "./src/config/site";
-
 import partytown from "@astrojs/partytown";
 
 const SITE = import.meta.env.PROD ? siteConfig.url : "http://localhost:4321";
