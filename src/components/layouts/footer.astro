@@ -1,6 +1,12 @@
 ---
 import logoImg from "@/assets/logo.svg";
 
+// 1. Import your local SVG components from src/assets/icons/
+import FacebookIcon from "@/assets/icons/facebook.svg";
+import TwitterIcon from "@/assets/icons/twitter.svg";
+import LinkedinIcon from "@/assets/icons/linkedin.svg";
+import InstagramIcon from "@/assets/icons/instagram.svg";
+
 const footerLinks = [
   { label: "Home", href: "/" },
   { label: "About Us", href: "/about" },
@@ -20,96 +26,96 @@ const legalLinks = [
   { label: "Data Retention Policy", href: "/data-retention" },
 ];
 
+// 2. Map the imported components directly to your array items
 const socialLinks = [
-  { label: "Facebook", href: "#", icon: "facebook" },
-  { label: "Twitter", href: "#", icon: "twitter" },
-  { label: "LinkedIn", href: "#", icon: "linkedin" },
-  { label: "Instagram", href: "#", icon: "instagram" },
+  { label: "Facebook", href: "#", icon: FacebookIcon },
+  { label: "Twitter", href: "#", icon: TwitterIcon },
+  { label: "LinkedIn", href: "#", icon: LinkedinIcon },
+  { label: "Instagram", href: "#", icon: InstagramIcon },
 ];
 ---
 
 <footer class="w-full border-t border-border/40 bg-muted/30 py-12 lg:py-16 mt-auto">
-	<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-		<div class="grid grid-cols-1 md:grid-cols-4 gap-10 md:gap-8 pb-10 border-b border-border/40">
-			<!-- Column 1: Info -->
-			<div class="space-y-4">
-				<a href="/" class="flex items-center gap-2">
-					<span class="h-9 w-9 flex items-center justify-center rounded-xl bg-background text-primary-foreground font-black text-xl tracking-tight shadow-md group-hover:scale-105 transition-transform overflow-hidden">
-						<img src={logoImg.src} alt="New Life Integration Logo" class="h-full w-full object-contain p-1.5" />
-					</span>
-					<div class="flex flex-col">
-						<span class="text-sm font-extrabold tracking-tight text-foreground leading-none">New Life Integration</span>
-						<span class="text-[9px] text-muted-foreground font-medium mt-0.5">Wellbeing Network CLG</span>
-					</div>
-				</a>
-				<p class="text-xs text-muted-foreground leading-relaxed">
-					A Company Limited by Guarantee (CLG) supporting individuals and families in their integration journey across Ireland. Supporting integration through community-driven programs, personal development, and wellbeing.
-				</p>
-			</div>
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-10 md:gap-8 pb-10 border-b border-border/40">
+            <div class="space-y-4">
+                <a href="/" class="flex items-center gap-2">
+                    <span class="h-9 w-9 flex items-center justify-center rounded-xl bg-background text-primary-foreground font-black text-xl tracking-tight shadow-md group-hover:scale-105 transition-transform overflow-hidden">
+                        <img src={logoImg.src} alt="New Life Integration Logo" class="h-full w-full object-contain p-1.5" />
+                    </span>
+                    <div class="flex flex-col">
+                        <span class="text-sm font-extrabold tracking-tight text-foreground leading-none">New Life Integration</span>
+                        <span class="text-[9px] text-muted-foreground font-medium mt-0.5">Wellbeing Network CLG</span>
+                    </div>
+                </a>
+                <p class="text-xs text-muted-foreground leading-relaxed">
+                    A Company Limited by Guarantee (CLG) supporting individuals and families in their integration journey across Ireland. Supporting integration through community-driven programs, personal development, and wellbeing.
+                </p>
+            </div>
 
-			<!-- Column 2: Quick Links -->
-			<div class="space-y-4">
-				<h4 class="text-sm font-bold text-foreground tracking-tight">Navigation</h4>
-				<ul class="grid grid-cols-1 gap-2 text-xs">
-					{footerLinks.slice(0, 5).map(link => (
-						<li>
-							<a href={link.href} class="text-muted-foreground hover:text-primary hover:underline underline-offset-4 transition-colors">
-								{link.label}
-							</a>
-						</li>
-					))}
-				</ul>
-			</div>
+            <div class="space-y-4">
+                <h4 class="text-sm font-bold text-foreground tracking-tight">Navigation</h4>
+                <ul class="grid grid-cols-1 gap-2 text-xs">
+                    {footerLinks.slice(0, 5).map(link => (
+                        <li>
+                            <a href={link.href} class="text-muted-foreground hover:text-primary hover:underline underline-offset-4 transition-colors">
+                                {link.label}
+                            </a>
+                        </li>
+                    ))}
+                </ul>
+            </div>
 
-			<!-- Column 3: More Programs -->
-			<div class="space-y-4">
-				<h4 class="text-sm font-bold text-foreground tracking-tight">Programs & Help</h4>
-				<ul class="grid grid-cols-1 gap-2 text-xs">
-					{footerLinks.slice(5).map(link => (
-						<li>
-							<a href={link.href} class="text-muted-foreground hover:text-primary hover:underline underline-offset-4 transition-colors">
-								{link.label}
-							</a>
-						</li>
-					))}
-				</ul>
-			</div>
+            <div class="space-y-4">
+                <h4 class="text-sm font-bold text-foreground tracking-tight">Programs & Help</h4>
+                <ul class="grid grid-cols-1 gap-2 text-xs">
+                    {footerLinks.slice(5).map(link => (
+                        <li>
+                            <a href={link.href} class="text-muted-foreground hover:text-primary hover:underline underline-offset-4 transition-colors">
+                                {link.label}
+                            </a>
+                        </li>
+                    ))}
+                </ul>
+            </div>
 
-			<!-- Column 4: Contact & Social -->
-			<div class="space-y-4">
-				<h4 class="text-sm font-bold text-foreground tracking-tight">Get In Touch</h4>
-				<p class="text-xs text-muted-foreground leading-relaxed">
-					Email: <a href="mailto:info@newlifeintegration.ie" class="text-primary hover:underline">info@newlifeintegration.ie</a>
-				</p>
-				<p class="text-xs text-muted-foreground leading-relaxed">
-					Office: Operating without a permanent office.
-				</p>
-				<div class="flex items-center gap-3 pt-2">
-					{socialLinks.map(social => (
-						<a 
-							href={social.href} 
-							class="h-8 w-8 flex items-center justify-center rounded-lg border border-border/40 text-muted-foreground hover:text-primary hover:bg-muted transition-colors"
-							aria-label={social.label}
-						>
-							<span class="text-[10px] font-bold">{social.label.substring(0, 2)}</span>
-						</a>
-					))}
-				</div>
-			</div>
-		</div>
+            <div class="space-y-4">
+                <h4 class="text-sm font-bold text-foreground tracking-tight">Get In Touch</h4>
+                <p class="text-xs text-muted-foreground leading-relaxed">
+                    Email: <a href="mailto:info@newlifeintegration.ie" class="text-primary hover:underline">info@newlifeintegration.ie</a>
+                </p>
+                <p class="text-xs text-muted-foreground leading-relaxed">
+                    Office: Operating without a permanent office.
+                </p>
+                <div class="flex items-center gap-3 pt-2">
+                    {socialLinks.map(social => {
+                        // 3. Assign the component to a capitalized variable name so Astro can render it
+                        const IconComponent = social.icon;
+                        return (
+                            <a 
+                                href={social.href} 
+                                class="h-8 w-8 flex items-center justify-center rounded-lg border border-border/40 text-muted-foreground hover:text-primary hover:bg-muted transition-colors"
+                                aria-label={social.label}
+                            >
+                                <IconComponent class="h-4 w-4 fill-current" />
+                            </a>
+                        );
+                    })}
+                </div>
+            </div>
+        </div>
 
-		<!-- Footer Bottom -->
-		<div class="pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
-			<p class="text-[11px] text-muted-foreground">
-				&copy; {new Date().getFullYear()} New Life Integration & Wellbeing Network CLG. Registered CLG in Ireland. All rights reserved.
-			</p>
-			<div class="flex items-center gap-4 flex-wrap justify-center text-[10px]">
-				{legalLinks.map(link => (
-					<a href={link.href} class="text-muted-foreground hover:text-primary hover:underline transition-colors">
-						{link.label}
-					</a>
-				))}
-			</div>
-		</div>
-	</div>
+        <div class="pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
+            <p class="text-[11px] text-muted-foreground">
+                &copy; {new Date().getFullYear()} New Life Integration & Wellbeing Network CLG. Registered CLG in Ireland. All rights reserved.
+            </p>
+            <div class="flex items-center gap-4 flex-wrap justify-center text-[10px]">
+                {legalLinks.map(link => (
+                    <a href={link.href} class="text-muted-foreground hover:text-primary hover:underline transition-colors">
+                        {link.label}
+                    </a>
+                ))}
+            </div>
+        </div>
+    </div>
 </footer>

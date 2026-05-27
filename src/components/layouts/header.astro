@@ -2,6 +2,7 @@
 import logoImg from "@/assets/logo.svg";
 
 import { Button } from "@/components/ui/button";
+import ThemeToggle from "../ThemeToggle.astro";
 
 
 const navItems = [
@@ -47,6 +48,7 @@ const ctaItems = [{ label: "Open a Branch", href: "/open-branch", variant: "defa
 
 		<!-- Desktop Action Button -->
 		<div class="hidden lg:flex items-center gap-3">
+			<ThemeToggle />
 			{ctaItems.map(item => (
 				<a href={item.href}>
 					<Button variant={item.variant} size="sm" className="rounded-full">

@@ -41,7 +41,6 @@ const { title, description, badge } = Astro.props;
     .particle {
         position: absolute;
         border-radius: 50%;
-        /* Плавный переход для бесконечной анимации хаотичного движения */
         transition: transform 60s linear; 
     }
 </style>
@@ -57,32 +56,19 @@ const { title, description, badge } = Astro.props;
         for (let i = 1; i <= totalParticles; i++) {
             const particle = document.createElement("div");
             particle.classList.add("particle");
-
-            // 1. Случайный размер от 5 до 10 пикселей (как в SCSS: random(5) + 5)
             const size = Math.floor(Math.random() * 5) + 5;
             particle.style.width = `${size}px`;
             particle.style.height = `${size}px`;
-
-            // 2. Случайная прозрачность (как в SCSS: random(100)/100)
             particle.style.opacity = (Math.random()).toString();
-
-            // 3. Случайный цвет HSL (как в SCSS: hsl(random(360), 70%, 50%))
             const hue = Math.floor(Math.random() * 360);
             particle.style.background = `hsl(${hue}, 70%, 50%)`;
-
-            // Функция для создания случайных координат внутри хедера
             const getRandomTransform = () => {
-                const x = Math.floor(Math.random() * 90); // 0-90 vw
-                const y = Math.floor(Math.random() * 90); // 0-90 vh
-                const z = Math.floor(Math.random() * 100); // 0-100 px
+                const x = Math.floor(Math.random() * 90); 
+                const y = Math.floor(Math.random() * 90); 
+                const z = Math.floor(Math.random() * 100); 
                 return `translate3d(${x}vw, ${y}vh, ${z}px)`;
             };
-
-            // Задаем начальную позицию
             particle.style.transform = getRandomTransform();
-
-            // Запускаем бесконечный цикл изменения траектории каждые 60 секунд (60s infinite из CodePen)
-            // Добавляем небольшую задержку старта для каждой частицы, чтобы они двигались несинхронно
             setTimeout(() => {
                 particle.style.transform = getRandomTransform();
                 
@@ -94,8 +80,6 @@ const { title, description, badge } = Astro.props;
             container.appendChild(particle);
         }
     }
-
-    // Инициализация при загрузке страницы
     document.addEventListener("astro:page-load", initParticles);
     if (document.readyState === "loading") {
         document.addEventListener("DOMContentLoaded", initParticles);

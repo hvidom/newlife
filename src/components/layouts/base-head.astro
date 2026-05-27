@@ -86,9 +86,17 @@ const ogImageUrl = image
 </script>
 
 <script is:inline>
-  // Принудительный Light Mode
-  document.documentElement.classList.remove("dark");
-  if (typeof localStorage !== "undefined") {
-    localStorage.setItem("theme", "light");
-  }
+  const getTheme = () => {
+    if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
+      return localStorage.getItem('theme');
+    }
+    return 'light';
+  };
+  const setClass = () => {
+    const isDark = getTheme() === 'dark';
+    document.documentElement.classList[isDark ? 'add' : 'remove']('dark');
+  };
+
+  setClass();
+  document.addEventListener('astro:after-swap', setClass);
 </script>
