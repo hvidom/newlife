@@ -1,12 +1,7 @@
----
-
----
-
-
 <script is:inline>
   window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  
+  function gtag(){window.dataLayer.push(arguments);}
+
   gtag('consent', 'default', {
     'ad_storage': 'denied',
     'ad_user_data': 'denied',
@@ -19,7 +14,7 @@
 
 <script is:inline>
   (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s),
   j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
   })(window,document,'script','dataLayer','GTM-K2T4GFL8');
@@ -34,7 +29,7 @@
 <div 
   id="cookie-banner" 
   data-astro-transition-persist="cookie-banner"
-  class="fixed bottom-4 left-4 right-4 md:left-auto md:max-w-md bg-background/95 backdrop-blur-md border border-border/80 p-5 rounded-xl shadow-xl z-[999999] flex flex-col gap-4 transition-all duration-300 opacity-0 pointer-events-none translate-y-4"
+  class="fixed bottom-4 left-4 right-4 md:left-auto md:max-w-md bg-background/95 backdrop-blur-md border border-border/80 p-5 rounded-xl shadow-xl z- flex flex-col gap-4 transition-all duration-300 opacity-0 pointer-events-none translate-y-4"
 >
   <div class="flex flex-col gap-1">
     <h3 class="text-base font-bold text-foreground flex items-center gap-2">
@@ -42,7 +37,7 @@
     </h3>
     <p class="text-xs sm:text-sm text-muted-foreground leading-relaxed">
       We use cookies to optimize performance, protect our site via Cloudflare, and analyze traffic using Google Analytics. Read our 
-      <a href="/privacy" class="text-primary hover:underline font-medium">Privacy Policy</a>.
+      <a href="/privacy-policy" class="text-primary hover:underline font-medium">Privacy Policy</a>.
     </p>
   </div>
   
@@ -66,15 +61,17 @@
 <script>
   function applyGtmConsent(status: 'granted' | 'denied') {
     // @ts-ignore
-    window.gtag('consent', 'update', {
-      'ad_storage': status,
-      'ad_user_data': status,
-      'ad_sign_in': status,
-      'ad_personalization': status,
-      'analytics_storage': status
-    });
+    if (typeof window !== 'undefined' && window.gtag) {
+      // @ts-ignore
+      window.gtag('consent', 'update', {
+        'ad_storage': status,
+        'ad_user_data': status,
+        'ad_sign_in': status,
+        'ad_personalization': status,
+        'analytics_storage': status
+      });
+    }
   }
-
 
   function initCookieBanner() {
     const banner = document.getElementById('cookie-banner');

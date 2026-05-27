@@ -12,7 +12,11 @@ import partytown from "@astrojs/partytown";
 const SITE = import.meta.env.PROD ? siteConfig.url : "http://localhost:4321";
 // https://astro.build/config
 export default defineConfig({
-    integrations: [react(), mdx(), sitemap(), partytown()],
+    integrations: [react(), mdx(), sitemap(), partytown({
+        config: {
+          forward: ['dataLayer.push', 'gtag']
+        }
+      })],
     adapter: cloudflare(),
     site: SITE,
     output: "server",

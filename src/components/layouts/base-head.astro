@@ -1,5 +1,5 @@
 ---
-import { siteConfig } from "../../config/site";
+import { siteConfig } from "@/config/site";
 import "@/styles/global.css";
 import "@/styles/scrollbar.css";
 import { ClientRouter } from "astro:transitions";
@@ -12,10 +12,10 @@ interface Props {
 
 const { title, description, image } = Astro.props;
 
-// Чистый канонический URL текущей страницы
+
 const canonicalURL = new URL(Astro.url.pathname, siteConfig.url);
 
-// SEO-оптимизация текстов под стандарты Google
+
 const seoDescription = description
   ? description.length > 155
     ? `${description.substring(0, 152)}...`
@@ -25,7 +25,7 @@ const seoDescription = description
 const seoTitle = title ? `${title} | Newlife` : "Newlife Integration & Wellbeing";
 const keywords =
   "New Life Integration, Wellbeing Network Ireland, community integration CLG, social inclusion Dublin, migrant support Ireland, creative programs wellbeing, community safety, personal development Ireland";
-// Картинка превью (если для страницы не задана уникальная, берем дефолтный fallback сайта)
+
 const ogImageUrl = image
   ? new URL(image, siteConfig.url)
   : new URL("/fallback.png", siteConfig.url);
@@ -64,10 +64,6 @@ const ogImageUrl = image
 <ClientRouter />
 
 <link rel="preload" href="/fonts/Inter-Bold.woff2" as="font" type="font/woff2" crossorigin />
-
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet" />
-
-<script type="text/partytown" src="https://www.googletagmanager.com/gtag/js?id=GTM-K2T4GFL8"></script>
 
 <script type="application/ld+json" is:inline define:vars={{ seoTitle, seoDescription, ogImageUrl, canonicalURL }}>
   {
