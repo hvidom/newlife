@@ -1,0 +1,46 @@
+body::-webkit-scrollbar {
+    width: var(--sb-size);
+  }
+  
+  body::-webkit-scrollbar-track {
+    background: var(--color-trancperent);
+    border-radius: 10px;
+  }
+  
+  body::-webkit-scrollbar-thumb {
+    background: var(--color-primary);
+    border-radius: 10px;
+    border: 2px solid var(--color-neon-cyan);
+  }
+  
+  @supports not selector(::-webkit-scrollbar) {
+    body {
+      scrollbar-color: var(--color-foreground) var(--color-foreground);
+    }
+  }
+  
+  ::selection {
+    background-color: oklch(91.3% 0.139 195.8 / 55%);
+    color: oklch(14.55% 0.004 49.66);
+  }
+  
+  *::-webkit-scrollbar {
+    height: 0.3rem;
+    width: 0rem;
+  }
+  
+  *::-webkit-scrollbar-track {
+    -ms-overflow-style: none;
+    overflow: -moz-scrollbars-none;
+  }
+  
+  *::-webkit-scrollbar-thumb {
+    -ms-overflow-style: none;
+    overflow: -moz-scrollbars-none;
+  }
+  
+  /* https://stackoverflow.com/questions/61083813/how-to-avoid-internal-autofill-selected-style-to-be-applied */
+  input:-webkit-autofill,
+  input:-webkit-autofill:focus {
+    transition: background-color 600000s 0s, color 600000s 0s;
+  }
