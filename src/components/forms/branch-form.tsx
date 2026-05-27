@@ -249,7 +249,7 @@ export function BranchForm() {
 						I consent to New Life Integration & Wellbeing Network CLG processing my personal data
 						for the purpose of evaluating my branch application and future communications. I
 						understand I can withdraw this consent at any time. For more information, see our{" "}
-						<a href="/privacy" className="text-primary hover:underline font-bold">
+						<a href="/privacy-policy" className="text-primary hover:underline font-bold">
 							Privacy Policy
 						</a>
 						. *

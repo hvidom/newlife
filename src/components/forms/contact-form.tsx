@@ -203,7 +203,7 @@ export function ContactForm() {
 						By submitting this form, you consent to New Life Integration & Wellbeing Network CLG
 						processing your data to respond to your inquiry. We will not use your information for
 						other purposes. See our{" "}
-						<a href="/privacy" className="text-primary hover:underline font-bold">
+						<a href="/privacy-policy" className="text-primary hover:underline font-bold">
 							Privacy Policy
 						</a>
 						. *
