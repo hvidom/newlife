@@ -12,9 +12,7 @@ interface Props {
 
 const { title, description, image } = Astro.props;
 
-
 const canonicalURL = new URL(Astro.url.pathname, siteConfig.url);
-
 
 const seoDescription = description
   ? description.length > 155

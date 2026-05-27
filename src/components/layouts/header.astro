@@ -105,15 +105,35 @@ const ctaItems = [{ label: "Open a Branch", href: "/open-branch", variant: "defa
 </header>
 
 <script>
-    function initMobileMenu() {
-        const toggleBtn = document.getElementById('mobile-menu-toggle');
-        const mobileMenu = document.getElementById('mobile-menu');
-        const menuIcon = toggleBtn?.querySelector('.menu-icon');
-        const closeIcon = toggleBtn?.querySelector('.close-icon');
+    function setupMobileMenu() {
+        // Делегируем клик на весь документ
+        document.addEventListener('click', (event) => {
+            const target = event.target as HTMLElement;
+            
+            // Проверяем, кликнули ли мы на кнопку гамбургера или на любой элемент внутри нее (например, SVG)
+            const toggleBtn = target.closest('#mobile-menu-toggle');
+            
+            if (!toggleBtn) {
+                // ДОПОЛНИТЕЛЬНО: Если меню открыто, и пользователь кликнул мимо меню — закрываем его
+                const mobileMenu = document.getElementById('mobile-menu');
+                if (mobileMenu && !mobileMenu.contains(target) && !target.closest('#mobile-menu-toggle')) {
+                    const menuIcon = document.querySelector('#mobile-menu-toggle .menu-icon');
+                    const closeIcon = document.querySelector('#mobile-menu-toggle .close-icon');
+                    
+                    mobileMenu.classList.add('hidden');
+                    menuIcon?.classList.remove('hidden');
+                    closeIcon?.classList.add('hidden');
+                }
+                return;
+            }
 
-        if (!toggleBtn || !mobileMenu) return;
+            // Если кликнули по кнопке — переключаем состояние
+            const mobileMenu = document.getElementById('mobile-menu');
+            const menuIcon = toggleBtn.querySelector('.menu-icon');
+            const closeIcon = toggleBtn.querySelector('.close-icon');
 
-        const handleToggle = () => {
+            if (!mobileMenu) return;
+
             const isHidden = mobileMenu.classList.contains('hidden');
             if (isHidden) {
                 mobileMenu.classList.remove('hidden');
@@ -124,13 +144,10 @@ const ctaItems = [{ label: "Open a Branch", href: "/open-branch", variant: "defa
                 menuIcon?.classList.remove('hidden');
                 closeIcon?.classList.add('hidden');
             }
-        };
-
-        toggleBtn.removeEventListener('click', handleToggle);
-        toggleBtn.addEventListener('click', handleToggle);
+        });
     }
 
-    // Инициализация скрипта при обычной загрузке и при использовании Astro View Transitions
-    initMobileMenu();
-    document.addEventListener('astro:page-load', initMobileMenu);
+    // Инициализируем один раз при старте приложения. 
+    // Благодаря делегированию событий, нам больше не нужно слушать 'astro:page-load'!
+    setupMobileMenu();
 </script>
