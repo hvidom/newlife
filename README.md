@@ -1,5 +1,3 @@
-cat << 'EOF' > README.md
-
 # 🌿 New Life Integration Website & API Platform
 
 A high-performance, edge-ready web application and community management platform built for **New Life Integration & Wellbeing Network CLG** (Ireland). This repository marks a transition to a lightning-fast, hybrid architecture powered by **Astro 6**, **Hono**, and **Cloudflare Pages**, entirely managed using **Bun**.
