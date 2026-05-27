@@ -1,45 +1,47 @@
 /* 1. Глобальные настройки скроллбара для HTML и стандартный Firefox-фоллбэк */
 html {
-    --sb-size: 10px; /* Дефолтный размер, если не задан в теме */
-    scrollbar-width: thin;
-    scrollbar-color: var(--color-primary) transparent;
-  }
-  
-  /* 2. Кастомизация скроллбара для Chromium-браузеров (Chrome, Edge, Opera, Safari) */
-  /* Мы применяем это ко всему сайту (*), а не только к body, чтобы везде был красивый единый стиль */
-  *::-webkit-scrollbar {
-    width: var(--sb-size, 10px);
-    height: 6px; /* Высота горизонтального скролла */
-  }
-  
-  *::-webkit-scrollbar-track {
-    background: transparent; /* Полностью прозрачный фон по умолчанию */
-    border-radius: 10px;
-  }
-  
-  *::-webkit-scrollbar-thumb {
-    background: var(--color-primary);
-    border-radius: 10px;
-    border: 2px solid var(--color-neon-cyan);
-  }
-  
-  /* Если в каких-то специфических блоках скроллбар вообще не нужен (опционально) */
-  .hide-scrollbar {
-    -ms-overflow-style: none;  /* IE и Edge */
-    scrollbar-width: none;  /* Firefox */
-  }
-  .hide-scrollbar::-webkit-scrollbar {
-    display: none; /* Chrome, Safari, Opera */
-  }
-  
-  /* 3. Кастомизация выделения текста (Selection) */
-  ::selection {
-    background-color: oklch(91.3% 0.139 195.8 / 55%);
-    color: oklch(14.55% 0.004 49.66);
-  }
-  
-  /* 4. Исправление бага с автозаполнением в инпутах (Autofill) */
-  input:-webkit-autofill,
-  input:-webkit-autofill:focus {
-    transition: background-color 600000s 0s, color 600000s 0s;
-  }
+	--sb-size: 10px; /* Дефолтный размер, если не задан в теме */
+	scrollbar-width: thin;
+	scrollbar-color: var(--color-primary) transparent;
+}
+
+/* 2. Кастомизация скроллбара для Chromium-браузеров (Chrome, Edge, Opera, Safari) */
+/* Мы применяем это ко всему сайту (*), а не только к body, чтобы везде был красивый единый стиль */
+*::-webkit-scrollbar {
+	width: var(--sb-size, 10px);
+	height: 6px; /* Высота горизонтального скролла */
+}
+
+*::-webkit-scrollbar-track {
+	background: transparent; /* Полностью прозрачный фон по умолчанию */
+	border-radius: 10px;
+}
+
+*::-webkit-scrollbar-thumb {
+	background: var(--color-primary);
+	border-radius: 10px;
+	border: 2px solid var(--color-neon-cyan);
+}
+
+/* Если в каких-то специфических блоках скроллбар вообще не нужен (опционально) */
+.hide-scrollbar {
+	-ms-overflow-style: none; /* IE и Edge */
+	scrollbar-width: none; /* Firefox */
+}
+.hide-scrollbar::-webkit-scrollbar {
+	display: none; /* Chrome, Safari, Opera */
+}
+
+/* 3. Кастомизация выделения текста (Selection) */
+::selection {
+	background-color: oklch(91.3% 0.139 195.8 / 55%);
+	color: oklch(14.55% 0.004 49.66);
+}
+
+/* 4. Исправление бага с автозаполнением в инпутах (Autofill) */
+input:-webkit-autofill,
+input:-webkit-autofill:focus {
+	transition:
+		background-color 600000s 0s,
+		color 600000s 0s;
+}

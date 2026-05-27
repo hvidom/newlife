@@ -4,6 +4,8 @@ import { ClientRouter } from "astro:transitions";
 import BaseHead from "@/components/layouts/base-head.astro";
 import Footer from "@/components/layouts/footer.astro";
 import Header from "@/components/layouts/header.astro";
+import Preloader from "@/components/layouts/Preloader.astro";
+import ScrollToTop from "@/components/layouts/ScrollToTop.astro";
 import TailwindIndicator from "@/components/layouts/tailwind-indicator.astro";
 import { cn } from "@/lib/utils";
 
@@ -24,48 +26,15 @@ const { title, description, mainClass } = Astro.props;
 	<body
 		class="min-h-screen flex flex-col bg-background text-foreground relative overflow-x-hidden"
 	>
-	<div id="global-preloader" class="fixed inset-0 z- flex flex-col items-center justify-center bg-background transition-opacity duration-500 pointer-events-none opacity-100">
-		<div class="flex flex-col items-center gap-4">
-		  <div class="h-10 w-10 animate-spin rounded-full border-4 border-muted border-t-primary"></div>
-		  <p class="text-sm font-medium text-muted-foreground tracking-wider animate-pulse">Loading...</p>
-		</div>
-	  </div>
+		<Preloader />
 		<TailwindIndicator />
-		
 		<Header />
-
 		<div class="relative z-10 flex-1 flex flex-col">
 			<main class={cn("flex-1", mainClass)}>
 				<slot />
+				<ScrollToTop />
 			</main>
 		</div>
-
 		<Footer />
-
-		<script is:inline>
-			const showLoader = () => {
-			  const loader = document.getElementById('global-preloader');
-			  if (loader) {
-				loader.style.opacity = '1';
-				loader.style.pointerEvents = 'auto';
-			  }
-			};
-	  
-			const hideLoader = () => {
-			  const loader = document.getElementById('global-preloader');
-			  if (loader) {
-				loader.style.opacity = '0';
-				loader.style.pointerEvents = 'none';
-			  }
-			};
-			if (document.readyState === 'complete') {
-			  hideLoader();
-			} else {
-			  window.addEventListener('load', hideLoader);
-			}
-	  
-			document.addEventListener('astro:before-preparation', showLoader);
-			document.addEventListener('astro:after-swap', hideLoader);
-		  </script>
 	</body>
 </html>
