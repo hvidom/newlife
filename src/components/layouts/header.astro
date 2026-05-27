@@ -105,24 +105,27 @@ const ctaItems = [{ label: "Open a Branch", href: "/open-branch", variant: "defa
 </header>
 
 <script>
+    function closeMobileMenu() {
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIcon = document.querySelector('#mobile-menu-toggle .menu-icon');
+        const closeIcon = document.querySelector('#mobile-menu-toggle .close-icon');
+
+        if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
+            mobileMenu.classList.add('hidden');
+            menuIcon?.classList.remove('hidden');
+            closeIcon?.classList.add('hidden');
+        }
+    }
+
     function setupMobileMenu() {
-        // Делегируем клик на весь документ
         document.addEventListener('click', (event) => {
             const target = event.target as HTMLElement;
-            
-            // Проверяем, кликнули ли мы на кнопку гамбургера или на любой элемент внутри нее (например, SVG)
             const toggleBtn = target.closest('#mobile-menu-toggle');
             
             if (!toggleBtn) {
-                // ДОПОЛНИТЕЛЬНО: Если меню открыто, и пользователь кликнул мимо меню — закрываем его
                 const mobileMenu = document.getElementById('mobile-menu');
-                if (mobileMenu && !mobileMenu.contains(target) && !target.closest('#mobile-menu-toggle')) {
-                    const menuIcon = document.querySelector('#mobile-menu-toggle .menu-icon');
-                    const closeIcon = document.querySelector('#mobile-menu-toggle .close-icon');
-                    
-                    mobileMenu.classList.add('hidden');
-                    menuIcon?.classList.remove('hidden');
-                    closeIcon?.classList.add('hidden');
+                if (mobileMenu && !mobileMenu.contains(target)) {
+                    closeMobileMenu();
                 }
                 return;
             }
@@ -140,14 +143,11 @@ const ctaItems = [{ label: "Open a Branch", href: "/open-branch", variant: "defa
                 menuIcon?.classList.add('hidden');
                 closeIcon?.classList.remove('hidden');
             } else {
-                mobileMenu.classList.add('hidden');
-                menuIcon?.classList.remove('hidden');
-                closeIcon?.classList.add('hidden');
+                closeMobileMenu();
             }
         });
     }
 
-    // Инициализируем один раз при старте приложения. 
-    // Благодаря делегированию событий, нам больше не нужно слушать 'astro:page-load'!
     setupMobileMenu();
+    document.addEventListener('astro:after-swap', closeMobileMenu);
 </script>
