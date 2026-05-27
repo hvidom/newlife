@@ -1,6 +1,10 @@
+---
+
+---
+
 <script is:inline>
   window.dataLayer = window.dataLayer || [];
-  function gtag(){window.dataLayer.push(arguments);}
+  function gtag(){dataLayer.push(arguments);}
 
   gtag('consent', 'default', {
     'ad_storage': 'denied',
@@ -25,11 +29,10 @@
   height="0" width="0" style="display:none;visibility:hidden"></iframe>
 </noscript>
 
-
 <div 
   id="cookie-banner" 
   data-astro-transition-persist="cookie-banner"
-  class="fixed bottom-4 left-4 right-4 md:left-auto md:max-w-md bg-background/95 backdrop-blur-md border border-border/80 p-5 rounded-xl shadow-2xl flex flex-col gap-4 transition-all duration-300 opacity-0 pointer-events-none translate-y-4 z- isolate"
+  class="fixed bottom-4 left-4 right-4 md:left-auto md:max-w-md bg-background/95 backdrop-blur-md border border-border/80 p-5 rounded-xl shadow-2xl flex flex-col gap-4 transition-all duration-300 opacity-0 pointer-events-none translate-y-4 z-100"
 >
   <div class="flex flex-col gap-1">
     <h3 class="text-base font-bold text-foreground flex items-center gap-2">
@@ -56,7 +59,6 @@
     </button>
   </div>
 </div>
-
 
 <script>
   function applyGtmConsent(status: 'granted' | 'denied') {

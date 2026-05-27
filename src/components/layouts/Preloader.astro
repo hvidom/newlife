@@ -1,11 +1,11 @@
 ---
-// Preloader.astro
+// src/components/layouts/Preloader.astro
 ---
 
 <div 
   id="global-preloader" 
   transition:persist
-  class="fixed inset-0 z- flex flex-col items-center justify-center bg-background transition-opacity duration-500 pointer-events-none opacity-100"
+  class="fixed inset-0 z-150 flex flex-col items-center justify-center bg-background transition-opacity duration-300 pointer-events-none opacity-100"
 >
   <div class="flex flex-col items-center gap-4">
     <div class="h-10 w-10 animate-spin rounded-full border-4 border-muted border-t-primary"></div>
@@ -13,9 +13,11 @@
   </div>
 </div>
 
-<script is:inline>
-  // Выносим функции в глобальную область, чтобы Astro не терял их при навигации
-  window.__showPreloader = () => {
+<script>
+  // ИСПРАВЛЕНО: Скрипт теперь собирается через компилятор Astro (без is:inline).
+  // Это гарантирует, что слушатели событий навесятся строго ОДИН раз на весь жизненный цикл приложения.
+
+  const showPreloader = () => {
     const loader = document.getElementById('global-preloader');
     if (loader) {
       loader.style.opacity = '1';
@@ -23,7 +25,7 @@
     }
   };
 
-  window.__hidePreloader = () => {
+  const hidePreloader = () => {
     const loader = document.getElementById('global-preloader');
     if (loader) {
       loader.style.opacity = '0';
@@ -31,19 +33,15 @@
     }
   };
 
-  // Инициализация при самой первой жесткой загрузке сайта
+  // 1. Прячем прелоадер при первичной жесткой загрузке HTML
   if (document.readyState === 'complete') {
-    window.__hidePreloader();
+    hidePreloader();
   } else {
-    window.addEventListener('load', window.__hidePreloader);
+    window.addEventListener('load', hidePreloader);
   }
 
-  // Защита: на случай, если страница загружается слишком быстро или из кэша
-  document.addEventListener('astro:page-load', () => {
-    window.__hidePreloader();
-  });
-
-  // Слушатели событий навигации ClientRouter
-  document.addEventListener('astro:before-preparation', window.__showPreloader);
-  document.addEventListener('astro:after-swap', window.__hidePreloader);
+  // 2. Интеграция с Astro ClientRouter (навешивается один раз)
+  document.addEventListener('astro:before-preparation', showPreloader);
+  document.addEventListener('astro:after-swap', hidePreloader);
+  document.addEventListener('astro:page-load', hidePreloader); // Защита от зависания
 </script>
