@@ -85,6 +85,7 @@ const ctaItems = [{ label: "Open a Branch", href: "/open-branch", variant: "defa
 			))}
 		</nav>
 		<div class="border-t border-border/40 pt-4 flex flex-col gap-2">
+			<ThemeToggle />
 			{ctaItems.map(item => (
 				<a href={item.href} class="w-full">
 					<Button variant={item.variant} className="w-full rounded-full">
