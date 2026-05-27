@@ -1,6 +1,7 @@
 ---
 
 import { ClientRouter } from "astro:transitions";
+import Analytic from "@/components/layouts/analytic.astro";
 import BaseHead from "@/components/layouts/base-head.astro";
 import Footer from "@/components/layouts/footer.astro";
 import Header from "@/components/layouts/header.astro";
@@ -16,6 +17,10 @@ type Props = {
 };
 
 const { title, description, mainClass } = Astro.props;
+Astro.response.headers.set(
+  "Cache-Control",
+  "public, max-age=0, s-maxage=31536000, must-revalidate",
+);
 ---
 
 <html lang="en" class="scroll-smooth" data-astro-transition-persist="theme">
@@ -26,6 +31,7 @@ const { title, description, mainClass } = Astro.props;
 	<body
 		class="min-h-screen flex flex-col bg-background text-foreground relative overflow-x-hidden"
 	>
+		<Analytic />
 		<Preloader />
 		<TailwindIndicator />
 		<Header />

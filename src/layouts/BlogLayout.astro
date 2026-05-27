@@ -26,6 +26,10 @@ const {
   publishDate,
   author = "Newlife Team",
 } = Astro.props;
+Astro.response.headers.set(
+  "Cache-Control",
+  "public, max-age=0, s-maxage=31536000, must-revalidate",
+);
 ---
 
 <html lang="en" class="scroll-smooth" data-astro-transition-persist="theme">

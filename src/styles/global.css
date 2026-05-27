@@ -131,6 +131,14 @@
 	--sidebar-ring: oklch(0.482 0.134 147.2);
 }
 
+@font-face {
+	font-family: "Inter";
+	font-style: normal;
+	font-weight: 700;
+	font-display: swap;
+	src: url("/src/assets/fonts/Inter-Bold.woff2") format("woff2");
+}
+
 @layer base {
 	* {
 		@apply border-border outline-ring/50;
