@@ -1,10 +1,9 @@
 ---
-// Astro Theme Toggle с круговой анимацией раскрытия экрана (как в MagicUI)
+// Полностью универсальный Astro Theme Toggle, работающий с несколькими копиями на странице
 ---
 
 <button
-  id="astro-theme-toggle"
-  class="group relative h-9 w-9 flex items-center justify-center rounded-lg border border-border/40 text-muted-foreground hover:text-primary hover:bg-muted transition-all duration-300 active:scale-90"
+  class="theme-toggle-btn group relative h-9 w-9 flex items-center justify-center rounded-lg border border-border/40 text-muted-foreground hover:text-primary hover:bg-muted transition-all duration-300 active:scale-90"
   aria-label="Toggle theme"
 >
   <div class="relative h-4 w-4 flex items-center justify-center overflow-hidden">
@@ -30,18 +29,19 @@
 </button>
 
 <script is:inline>
-  function initThemeToggle() {
-    const toggleBtn = document.getElementById('astro-theme-toggle');
-    if (!toggleBtn) return;
-
-    toggleBtn.removeEventListener('click', handleToggleClick);
-    toggleBtn.addEventListener('click', handleToggleClick);
+  function initThemeToggles() {
+    // Находим ВСЕ кнопки переключения на странице
+    const toggleButtons = document.querySelectorAll('.theme-toggle-btn');
+    
+    toggleButtons.forEach(btn => {
+      btn.removeEventListener('click', handleToggleClick);
+      btn.addEventListener('click', handleToggleClick);
+    });
   }
 
   function handleToggleClick(event) {
     const isDark = document.documentElement.classList.contains('dark');
 
-    // Базовая функция переключения темы
     const changeTheme = () => {
       if (isDark) {
         document.documentElement.classList.remove('dark');
@@ -52,32 +52,27 @@
       }
     };
 
-    // Если браузер старый и не поддерживает View Transition, просто меняем тему
     if (!document.startViewTransition) {
       changeTheme();
       return;
     }
 
-    // Получаем координаты центра клика по кнопке
     const x = event.clientX;
     const y = event.clientY;
 
-    // Считаем расстояние до самого дальнего угла экрана, чтобы круг перекрыл всё
     const endRadius = Math.hypot(
       Math.max(x, window.innerWidth - x),
       Math.max(y, window.innerHeight - y)
     );
 
-    // Запускаем нативную анимацию переключения
     const transition = document.startViewTransition(() => {
       changeTheme();
     });
 
-    // Когда новое состояние готово, запускаем CSS-анимацию круга (clip-path)
     transition.ready.then(() => {
       const clipPath = [
         `circle(0px at ${x}px ${y}px)`,
-        `circle(${endRadius}px at ${x}px ${cy = y}px)`
+        `circle(${endRadius}px at ${x}px ${y}px)`
       ];
 
       document.documentElement.animate(
@@ -87,37 +82,31 @@
         {
           duration: 450,
           easing: 'ease-in-out',
-          // Анимируем именно псевдоэлемент новой страницы
           pseudoElement: '::view-transition-new(root)',
         }
       );
     });
   }
 
+  // Инициализация при разных сценариях загрузки Astro
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initThemeToggle);
+    document.addEventListener('DOMContentLoaded', initThemeToggles);
   } else {
-    initThemeToggle();
+    initThemeToggles();
   }
 
-  document.addEventListener('astro:page-load', initThemeToggle);
+  document.addEventListener('astro:page-load', initThemeToggles);
 </script>
 
 <style is:global>
-  /* Отключаем стандартный встроенный эффект перекрестного затухания (Fade), 
-     чтобы он не мешал нашему кругу */
   ::view-transition-old(root),
   ::view-transition-new(root) {
     animation: none;
     mix-blend-mode: normal;
   }
-
-  /* Старая страница остается снизу */
   ::view-transition-old(root) {
     z-index: 1;
   }
-
-  /* Новая страница накладывается сверху через наш круговой clip-path */
   ::view-transition-new(root) {
     z-index: 9999;
   }
