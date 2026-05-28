@@ -21,12 +21,14 @@ const seoDescription = description
   : siteConfig.description;
 
 const seoTitle = title ? `${title} | Newlife` : "Newlife Integration & Wellbeing";
+
+// Meta-keywords (хоть Google их почти не учитывает, для локального SEO ок)
 const keywords =
   "New Life Integration, Wellbeing Network Ireland, community integration CLG, social inclusion Dublin, migrant support Ireland, creative programs wellbeing, community safety, personal development Ireland";
 
 const ogImageUrl = image
-  ? new URL(image, siteConfig.url)
-  : new URL("/fallback.png", siteConfig.url);
+  ? new URL(image, siteConfig.url).toString() // Явно приводим к строке для скриптов
+  : new URL("/fallback.png", siteConfig.url).toString();
 ---
 
 <meta charset="utf-8">
@@ -63,15 +65,15 @@ const ogImageUrl = image
 
 <link rel="preload" href="/fonts/Inter-Bold.woff2" as="font" type="font/woff2" crossorigin />
 
-<script type="application/ld+json" is:inline>
+<script type="application/ld+json" is:inline define:vars={{ seoDescription, ogImageUrl }}>
   {
     "@context": "https://schema.org",
     "@type": "NGO",
     "name": "New Life Integration & Wellbeing Network CLG",
     "url": "https://newlifeintegration.ie",
     "logo": "https://newlifeintegration.ie/favicon.svg",
-    "image": "{ogImageUrl}",
-    "description": "{seoDescription}",
+    "image": ogImageUrl,
+    "description": seoDescription,
     "address": {
       "@type": "PostalAddress",
       "addressCountry": "IE",
@@ -93,11 +95,13 @@ const ogImageUrl = image
     }
     return 'light';
   };
+  
   const setClass = () => {
     const isDark = getTheme() === 'dark';
     document.documentElement.classList[isDark ? 'add' : 'remove']('dark');
   };
 
   setClass();
+  // Важно для работы темы при переходах внутри Astro Router
   document.addEventListener('astro:after-swap', setClass);
 </script>
