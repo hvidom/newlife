@@ -23,7 +23,10 @@ const {
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, siteConfig.url);
+const keywords =
+  "New Life Integration, Wellbeing Network Ireland, community integration CLG, social inclusion Dublin, migrant support Ireland, creative programs wellbeing, community safety, personal development Ireland";
 
+  
 const seoDescription = description
   ? description.length > 155
     ? `${description.substring(0, 152)}...`
@@ -49,6 +52,10 @@ const ogImageUrl = image
 <meta name="geo.placename" content="Dublin" />
 <meta property="og:locale" content="en_IE" />
 
+
+<link rel="canonical" href={canonicalURL}>
+<link rel="sitemap" href="/sitemap-index.xml" />
+<meta name="keywords" content={keywords} />
 
 <title>{seoTitle}</title>
 <meta name="title" content={seoTitle}>

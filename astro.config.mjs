@@ -8,7 +8,7 @@ import tailwindcss from "@tailwindcss/vite";
 import { siteConfig } from "./src/config/site";
 import partytown from "@astrojs/partytown";
 
-const SITE = import.meta.env.PROD ? siteConfig.url : "http://localhost:4321";
+const SITE = process.env.NODE_ENV === "production" ? siteConfig.url : "http://localhost:4321";
 // https://astro.build/config
 export default defineConfig({
     integrations: [react(), mdx(), sitemap(), 
