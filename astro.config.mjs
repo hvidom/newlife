@@ -11,7 +11,10 @@ import partytown from "@astrojs/partytown";
 const SITE = process.env.NODE_ENV === "production" ? siteConfig.url : "http://localhost:4321";
 // https://astro.build/config
 export default defineConfig({
-    integrations: [react(), mdx(), sitemap(), 
+    integrations: [react(), mdx(),  
+        sitemap({
+        entryLimit: 10000,
+        }), 
         partytown({
         config: {
           forward: ['dataLayer.push', 'gtag']
